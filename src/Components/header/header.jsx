@@ -1,10 +1,10 @@
 import React from "react";
-import navbar from "../navbar/navbar.jsx";
+import Navbar from "../navbar/navbar.jsx";
 
 const header = () => {
     return (
-        <header>
-            <navbar />
+        <header className="bg-black">
+            <Navbar />
         </header>
     );
 };

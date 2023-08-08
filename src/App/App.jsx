@@ -1,10 +1,14 @@
 import "./App.scss";
-import header from "../Components/header/header.jsx";
+import React from "react";
+
+import Header from "../Components/header/header.jsx";
+import Signup from "../pages/signup.jsx";
 
 function App() {
     return (
         <main>
-            <h1>hey</h1>
+            <Header />
+            <Signup />
         </main>
     );
 }
