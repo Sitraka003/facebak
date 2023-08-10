@@ -29,3 +29,18 @@ export const updateUser = async (userId, userData) => {
   const data = await response.json();
   return data;
 };
+
+export const deleteUser = async (userId) => {
+  const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    // Utilisateur supprimé avec succès
+    return true;
+  } else {
+    // Gérer les erreurs, par exemple :
+    const errorData = await response.json();
+    throw new Error(errorData.message);
+  }
+};
