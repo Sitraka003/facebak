@@ -1,11 +1,7 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
 
-import {
-    AiOutlineGoogle,
-    AiFillFacebook,
-    AiFillLinkedin,
-} from "react-icons/ai";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
 
@@ -79,7 +75,7 @@ const formLogin = () => {
                                         </div>
                                     </div>
                                     <a
-                                        href="#"
+                                        href="#passwd"
                                         className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                                     >
                                         Forgot password?

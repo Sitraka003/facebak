@@ -10,12 +10,16 @@ import Profile from "../../assets/imgs/profile.jpg";
 import Profile2 from "../../assets/imgs/profile2.jpg";
 import Post1 from "../../assets/imgs/post1.jpeg";
 
-const homeContent = () => {
+import TextareaForm from "../textareaForm/textareaForm.jsx";
+
+const HomeContent = () => {
     return (
-        <div className="md:grid grid-cols-5 gap-2 lg:gap-6 my-4 mx-2 md:mx-3 lg:mx-8 xl:mx-10 xl:gap-12">
-            {/* --------------------  right Side ---------------------- */}
-            <div className="col-span-3">
+        <div className="lg:grid grid-cols-5 gap-2 lg:gap-6 my-4 mx-2 md:mx-3 lg:mx-8 xl:mx-10 xl:gap-12">
+            {/* --------------------  right Side --> Correspond aux Posts---------------------- */}
+
+            <div className="col-span-3 max-w-[745px] my-0 mx-auto">
                 {/*------------- Input field of feeds -------------*/}
+
                 <div className="bg-transparent p-3 rounded-md border-[1px] border-gray-800">
                     <div className="flex items-center gap-3">
                         <img
@@ -23,20 +27,27 @@ const homeContent = () => {
                             alt=""
                             className="w-10 h-10 rounded-full"
                         />
-                        <input
-                            type="text"
-                            placeholder="What's on your mind ?"
-                            className="bg-gray-800 bg-opacity-50 w-full h-10 rounded-md px-5 text-white outline-none"
-                        />
+                        {/* Textarea - Input Texts */}
+                        <TextareaForm placeholder="What's in your mind ?" bg />
                     </div>
 
                     <div className="flex justify-between">
                         <div className="flex gap-4 pt-5 items-center">
-                            <HiOutlineCamera />
-                            <BiImageAdd />
-                            <AiOutlineLink />
-                            <IoLocationOutline />
-                            <BsEmojiSmile />
+                            <a href="#photo">
+                                <HiOutlineCamera />
+                            </a>
+                            <a href="#image">
+                                <BiImageAdd />
+                            </a>
+                            <a href="#link">
+                                <AiOutlineLink />
+                            </a>
+                            <a href="#location">
+                                <IoLocationOutline />
+                            </a>
+                            <a href="#emoji">
+                                <BsEmojiSmile />
+                            </a>
                         </div>
 
                         {/* Btn submint feed => CANCEL or POST */}
@@ -54,8 +65,8 @@ const homeContent = () => {
                         </div>
                     </div>
                 </div>
-                {/*------------- Latest post by friends/others -------------*/}
-                <div className="bg-gray-900 p-2 mt-5">
+                {/*------------- Latest post by friends/others (ici y'aura la liste des publications XD) -------------*/}
+                <div className="bg-gray-900 p-2 mt-5 border-[1px] border-solid border-gray-700 rounded-md">
                     <div className="flex items-center gap-3">
                         <Post
                             description={
@@ -95,4 +106,4 @@ const homeContent = () => {
     );
 };
 
-export default homeContent;
+export default HomeContent;
