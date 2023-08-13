@@ -1,11 +1,7 @@
-import { React, useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import {
-    AiOutlineGoogle,
-    AiFillFacebook,
-    AiFillLinkedin,
-} from "react-icons/ai";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
 
