@@ -1,42 +1,19 @@
 import React from "react";
 
-const comunityCards = () => {
+const ComunityCards = ({ title, image, descriptions }) => {
     return (
-        <div>
-            <div>
-                <img src="" alt="" />
-                <div>
-                    <h3>Community name</h3>
-                    <p>Community type</p>
-                    <p>Number of members</p>
-                    <p>Number of posts</p>
-                </div>
-            </div>
-            <button>Join</button>
-
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img
-                    class="w-full"
-                    src="/img/card-top.jpg"
-                    alt="Sunset in the mountains"
-                />
+        <div className="container mx-auto">
+            <div class="max-w-xs min-w-[18rem] rounded overflow-hidden border-2 border-gray-700 mx-auto">
+                <img class="w-full" src={image} />
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Voluptatibus quia, nulla! Maiores et perferendis
-                        eaque, exercitationem praesentium nihil.
+                    <div class="font-bold text-xl mb-2">{title}</div>
+                    <p class="text-gray-400 text-base text-justify">
+                        {descriptions}
                     </p>
                 </div>
                 <div class="px-6 pt-4 pb-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                        #photography
-                    </span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                        #travel
-                    </span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                        #winter
+                    <span class="inline-block bg-gray-200 rounded-md px-3 pt-3 pb-2 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
+                        <a href="#join">Join Community</a>
                     </span>
                 </div>
             </div>
@@ -44,4 +21,4 @@ const comunityCards = () => {
     );
 };
 
-export default comunityCards;
+export default ComunityCards;

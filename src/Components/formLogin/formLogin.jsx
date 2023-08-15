@@ -5,7 +5,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
 
-const formLogin = () => {
+const FormLogin = () => {
     return (
         <div>
             <section className="bg-black">
@@ -145,4 +145,4 @@ const formLogin = () => {
     );
 };
 
-export default formLogin;
+export default FormLogin;

@@ -8,7 +8,9 @@ import { BsEmojiSmile } from "react-icons/bs";
 import Post from "../post/post.jsx";
 import Profile from "../../assets/imgs/profile.jpg";
 import Profile2 from "../../assets/imgs/profile2.jpg";
+import Profile3 from "../../assets/imgs/profile3.jpg";
 import Post1 from "../../assets/imgs/post1.jpeg";
+import Post2 from "../../assets/imgs/post2.jpeg";
 
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 
@@ -66,8 +68,8 @@ const HomeContent = () => {
                     </div>
                 </div>
                 {/*------------- Latest post by friends/others (ici y'aura la liste des publications XD) -------------*/}
-                <div className="bg-gray-900 p-2 mt-5 border-[1px] border-solid border-gray-700 rounded-md">
-                    <div className="flex items-center gap-3">
+                <div className="mt-5">
+                    <div className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5">
                         <Post
                             description={
                                 <div>
@@ -83,21 +85,93 @@ const HomeContent = () => {
                                 </div>
                             }
                             profileImage={Profile2}
+                            username="Jane Smith"
                             postImage={Post1}
+                            postHour="2h ago"
+                            hashtag={
+                                <div className="flex gap-2">
+                                    <a
+                                        href="#hashtag"
+                                        className="text-[0.8rem] text-blue-500"
+                                    >
+                                        #fitness
+                                    </a>
+                                    <a
+                                        href="#hashtag"
+                                        className="text-[0.8rem] text-blue-500"
+                                    >
+                                        #workout
+                                    </a>
+                                    <a
+                                        href="#hashtag"
+                                        className="text-[0.8rem] text-blue-500"
+                                    >
+                                        #gym
+                                    </a>
+                                </div>
+                            }
+                            like="1K"
+                            share="58"
+                            comments="13"
+                        />
+                    </div>
+
+                    <div className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5">
+                        <Post
+                            description={
+                                <div>
+                                    <p>Outfit Of the Day ❤️</p>
+                                </div>
+                            }
+                            profileImage={Profile3}
+                            username="Dylan scott"
+                            postImage={Post2}
+                            postHour="4h ago"
+                            hashtag={
+                                <div className="flex gap-2">
+                                    <a
+                                        href="#hashtag"
+                                        className="text-[0.8rem] text-blue-500"
+                                    >
+                                        #fashion
+                                    </a>
+                                    <a
+                                        href="#hashtag"
+                                        className="text-[0.8rem] text-blue-500"
+                                    >
+                                        #ootd
+                                    </a>
+                                    <a
+                                        href="#hashtag"
+                                        className="text-[0.8rem] text-blue-500"
+                                    >
+                                        #style
+                                    </a>
+                                </div>
+                            }
+                            like="2K"
+                            share="100"
+                            comments="50"
                         />
                     </div>
                 </div>
             </div>
 
-            {/* ------------------------------------------- left Side ------------------------------------------ */}
+            {/* ----------------------------------55rem--------- left Side ------------------------------------------ */}
             <div className="col-span-2 mt-5 md:mt-0">
                 {/* --Events-- */}
-                <div className="bg-gray-900 p-2">
+                <div className="bg-gray-900 p-2 shadow-[0px_0px_5px_#96d1ff] rounded-md mb-5">
                     <div className="flex items-center gap-3">
-                        <div>
-                            <div className="p-2">
-                                <p className="text-[0.8rem]">Upcoming Events</p>
-                            </div>
+                        <div className="p-2">
+                            <p className="text-[0.8rem]">Upcoming Events</p>
+                        </div>
+                    </div>
+                </div>
+                {/* contacts */}
+                <div className="bg-gray-900 p-2 shadow-[0px_0px_5px_#96d1ff] rounded-md mb-5">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2">
+                            <p className="text-[0.8rem]">Contacts</p>
                         </div>
                     </div>
                 </div>

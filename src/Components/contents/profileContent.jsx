@@ -1,10 +1,10 @@
 import React from "react";
 import Profile from "../../assets/imgs/profile.jpg";
 import { BiEditAlt } from "react-icons/bi";
-const profileContent = () => {
+const ProfileContent = () => {
     return (
-        <section className="container mx-auto mt-8">
-            <div>
+        <section className="container mx-auto mt-8 mx-16 ">
+            <div className="border-b-2 border-gray-300 pb-5">
                 {/* { photo de couverture } */}
                 <div className="h-48 bg-gray-900">
                     <div className="flex justify-end items-end h-full">
@@ -39,28 +39,58 @@ const profileContent = () => {
                             </h2>
                         </div>
                     </div>
+                </div>
 
-                    {/* Informations */}
-                    {/* <div>
-                    <div className="grid grid-cols-2">
-                        <div>
-                            <h2>Posts</h2>
-                            <h3>0</h3>
-                        </div>
-                        <div>
-                            <h2>Followers</h2>
-                            <h3>0</h3>
-                        </div>
-                        <div>
-                            <h2>Following</h2>
-                            <h3>0</h3>
-                        </div>
+                {/* Profile informations */}
+                <div className="mt-5">
+                    <div className="flex justify-center">
+                        <ul className="flex gap-16">
+                            <li className="text-white text-[0.8rem]">
+                                <span className="font-semibol px-2">01</span>
+                                <a href="#">Friends</a>
+                            </li>
+                            <li className="text-white text-[0.8rem]">
+                                <span className="font-semibold px-2">03</span>
+                                pages s{" "}
+                            </li>
+                        </ul>
                     </div>
-                </div> */}
                 </div>
             </div>
+
+            {/* Profile content */}
+            <div className="mt-8">
+                <div className="flex justify-between">
+                    <ul className="flex gap-16">
+                        <li className="text-white text-[0.8rem]">
+                            <a href="#">About</a>
+                        </li>
+
+                        <li className="text-white text-[0.8rem]">
+                            <a href="#Post">Post</a>
+                        </li>
+                        <li className="text-white text-[0.8rem]">
+                            <a href="#">Photos</a>
+                        </li>
+                        <li className="text-white text-[0.8rem]">
+                            <a href="#">Videos</a>
+                        </li>
+
+                        <li className="text-white text-[0.8rem]">
+                            <a href="#">More</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <button className="text-white px-3 py-1 rounded-md">
+                            ...
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Profile content */}
         </section>
     );
 };
 
-export default profileContent;
+export default ProfileContent;
