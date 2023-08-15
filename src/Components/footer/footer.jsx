@@ -1,6 +1,6 @@
 import React from "react";
 
-const footer = () => {
+const Footer = () => {
     return (
         <footer className="py-3 px-5">
             <div className="text-[0.8rem] text-gray-400 flex flex-wrap gap-2 justify-center text-center mb-5">
@@ -24,4 +24,4 @@ const footer = () => {
     );
 };
 
-export default footer;
+export default Footer;

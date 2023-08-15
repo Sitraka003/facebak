@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const TextareaForm = ({ placeholder, bg, isActive }) => {
+const TextareaForm = ({ placeholder, bg }) => {
     const [comment, setComment] = useState("");
-    const [isFocused, setIsFocused] = useState(false);
 
     const handleInputChange = (event) => {
         setComment(event.target.value);

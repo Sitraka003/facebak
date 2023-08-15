@@ -23,10 +23,6 @@ const Sidebar = () => {
                             {/* search */}
                             <div className="mt-6">
                                 <div className="relative">
-                                    {/* <input
-                                        type="text"
-                                        className="bg-transparent md:border-[2px] border-gray-800 rounded-md w-full px-4 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700"
-                                    /> */}
                                     <div className="absolute top-0 flex items-center h-full ml-3 md:ml-5">
                                         <a href="#searchhh">
                                             <BsSearch className="text-gray-50" />
@@ -91,17 +87,16 @@ const Sidebar = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="p-4">
-                        <button
-                            type="button"
-                            class="inline-flex items-center justify-center h-9 px-4 rounded-md bg-gray-900 text-gray-300 hover:text-white text-sm font-semibold transition"
-                        >
-                            <CiLogout className="text-sm" />
+                    <div className="p-4 flex items-center">
+                        <button type="button" class="">
+                            <a href="#logout">
+                                <CiLogout className="text-2xl text-white" />
+                            </a>
                         </button>
 
-                        <span class="font-bold text-sm ml-2 text-[0.8rem]">
+                        <p class="font-bold text-sm ml-2 text-[0.8rem] hidden lg:block">
                             Logout
-                        </span>
+                        </p>
                     </div>
                 </div>
             </aside>
@@ -110,35 +105,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-// ${
-//     activeMenuItem === "news"
-//         ? ""
-//         : "bg-transparent hover:bg-gray-200 hover:text-gray-700"
-// }
-
-// ${
-//     activeMenuItem === "marketplace"
-//         ? "bg-gray-900 bg-opacity-80"
-//         : "bg-transparent hover:bg-gray-200 hover:text-gray-700"
-// }
-
-// ${
-//     activeMenuItem === "community"
-//         ? "bg-gray-900 bg-opacity-80"
-//         : "bg-transparent hover:bg-gray-200 hover:text-gray-700"
-// }
-
-// ${
-//     activeMenuItem === "home"
-//         ? "bg-gray-900 bg-opacity-80"
-//         : ""
-// }
-
-//
-
-//
-
-//className={`flex gap-4  rounded-md font-bold text-sm text-gray-100 py-3 justify-center lg:justify-start lg:px-4 px-0`}
-
-//className={`flex gap-4  rounded-md font-bold text-sm text-gray-100 py-3 justify-center lg:justify-start lg:px-4 px-0`}

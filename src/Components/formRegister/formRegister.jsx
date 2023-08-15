@@ -5,7 +5,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
 
-const formRegister = () => {
+const FormRegister = () => {
     return (
         <section className="h-screen">
             <div className="h-full container mx-auto px-6 flex flex-col items-center justify-center">
@@ -181,4 +181,4 @@ const formRegister = () => {
     );
 };
 
-export default formRegister;
+export default FormRegister;

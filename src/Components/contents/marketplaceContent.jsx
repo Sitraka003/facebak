@@ -1,7 +1,7 @@
 import React from "react";
 
-const marketplaceContent = () => {
+const MarketplaceContent = () => {
     return <div>marketplaceContent</div>;
 };
 
-export default marketplaceContent;
+export default MarketplaceContent;

@@ -1,7 +1,7 @@
 import React from "react";
 
-const settingsContent = () => {
+const SettingsContent = () => {
     return <div></div>;
 };
 
-export default settingsContent;
+export default SettingsContent;

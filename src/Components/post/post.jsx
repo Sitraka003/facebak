@@ -1,7 +1,9 @@
 import React from "react";
 
+import * as Dialog from "@radix-ui/react-dialog";
+
 import { BsStopwatch, BsEmojiSmile } from "react-icons/bs";
-import { AiOutlineLike, AiOutlineLink } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineLink, AiOutlineClose } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
 import { MdOutlineModeComment } from "react-icons/md";
 import { HiOutlineCamera } from "react-icons/hi";
@@ -12,7 +14,19 @@ import Profile from "../../assets/imgs/profile.jpg";
 
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 
-const Post = ({ description, profileImage, postImage }) => {
+import style from "./post.scss";
+
+const Post = ({
+    description,
+    profileImage,
+    username,
+    postImage,
+    postHour,
+    hashtag,
+    like,
+    share,
+    comments,
+}) => {
     return (
         <section>
             <div className="flex items-center gap-3">
@@ -22,34 +36,37 @@ const Post = ({ description, profileImage, postImage }) => {
                     className="w-10 h-10 rounded-full"
                 />
                 <div>
-                    <p className="text-white font-semibold">Jane Smith</p>
+                    <p className="text-white font-semibold">{username}</p>
                     <p className="text-[0.7rem] text-gray-400 flex gap-2">
-                        <BsStopwatch /> 2 hours ago
+                        <BsStopwatch /> {postHour}
                     </p>
                 </div>
             </div>
 
             <div className="mt-3">
                 <p className="text-white">{description}</p>
+                <p className="text-white">{hashtag}</p>
 
                 <div className="mt-3">
-                    <img
-                        src={postImage}
-                        alt="post_img"
-                        className="w-full h-fit object-cover rounded-md"
-                    />
+                    <div className="h-[30rem]">
+                        <img
+                            src={postImage}
+                            alt="post_img"
+                            className="w-full h-full object-contain rounded-md bg-[#02101b]"
+                        />
+                    </div>
 
                     <div className="flex justify-between items-center mt-3">
                         <div className="flex gap-5">
                             <button className=" py-1  text-white flex gap-1 items-center">
-                                <p className="pt-2 text-[0.8rem]">1K</p>
+                                <p className="pt-2 text-[0.8rem]">{like}</p>
                                 <a href="#Like" className="text-xl">
                                     <AiOutlineLike />
                                 </a>
                             </button>
 
                             <button className=" py-1  text-white flex gap-1 items-center">
-                                <p className="pt-2 text-[0.8rem]">57</p>
+                                <p className="pt-2 text-[0.8rem]">{share}</p>
                                 <a href="#share" className="text-xl">
                                     <PiShareFatLight />
                                 </a>
@@ -57,33 +74,44 @@ const Post = ({ description, profileImage, postImage }) => {
                         </div>
 
                         {/* PS : à cliquer pour afficher tout les commentaires du poste*/}
-                        <div>
-                            <a href="#allcomments" className="text-xl">
-                                <MdOutlineModeComment />
-                            </a>
-                        </div>
+
+                        <Dialog.Root>
+                            <Dialog.Trigger asChild>
+                                <div className="Button violet ml-5 flex items-center gap-2 cursor-pointer">
+                                    <div className="flex gap-1">
+                                        <p className="text-white text-[0.8rem]">
+                                            {comments} comments
+                                        </p>
+
+                                        <a
+                                            href="#allcomments"
+                                            className="text-xl"
+                                        >
+                                            <MdOutlineModeComment />
+                                        </a>
+                                    </div>
+                                </div>
+                            </Dialog.Trigger>
+                            <Dialog.Portal>
+                                <Dialog.Overlay className="DialogOverlay" />
+                                <Dialog.Content className="DialogContent bg-[#0c121c] w-[55rem] h-5/6 rounded-md">
+                                    <Dialog.Title className="DialogTitle "></Dialog.Title>
+
+                                    <Dialog.Description className="DialogDescription"></Dialog.Description>
+
+                                    <Dialog.Close asChild>
+                                        <button
+                                            className="IconButton cursor-pointer"
+                                            aria-label="Close"
+                                        >
+                                            <AiOutlineClose />
+                                        </button>
+                                    </Dialog.Close>
+                                </Dialog.Content>
+                            </Dialog.Portal>
+                        </Dialog.Root>
                     </div>
                 </div>
-
-                {/* <div className="mt-3 border-t-[4px] border-gray-800">
-                    <div className="flex gap-3 mt-3">
-                        <img
-                            src={Profile3}
-                            alt=""
-                            className="w-10 h-10 rounded-full"
-                        />
-                        <div>
-                            <p className="text-white font-semibold">
-                                user lambda
-                            </p>
-                            <p className="text-[0.7rem] text-gray-400">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Quisquam, voluptatum
-                                voluptates.
-                            </p>
-                        </div>
-                    </div>
-                </div> */}
 
                 {/* a field input to comment the post */}
                 <div className="my-3 pt-5 border-t-[4px] border-gray-800">
