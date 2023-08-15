@@ -1,31 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getUsers } from './api/users';
+import { Routes, Route } from "react-router-dom";
+import SignUp from "./components/Home/SignUp";
 
-const App = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const usersData = await getUsers();
-      setUsers(usersData);
-    };
-
-    fetchUsers();
-  }, []);
-
+export default function App() {
   return (
-    <div>
-      <h2>User List</h2>
-      <ul>
-        {users.map((user) => (
-          <>
-            <li key={user.id}>{user.username}</li>
-            <li key={user.id}>{user.email}</li>
-          </>
-        ))}
-      </ul>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<SignUp />} />
+      </Routes>
     </div>
   );
-};
-
-export default App;
+}
