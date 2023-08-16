@@ -1,15 +1,4 @@
 import React from "react";
-// import 'common/extend.scss';
-// import './common/fonts.scss';
-// import './common/minxi.scss';
-// import './common/variables.scss';
-// import './common/global.scss';
-
-// /* layout */
-// import './layouts/main.scss';
-
-//  /* Responsive */
-// import './layouts/responsive.scss';
 import '../css/style.css';
 import '../fonts/material-icon/css/material-design-iconic-font.min.css';
 
