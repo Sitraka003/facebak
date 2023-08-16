@@ -75,32 +75,17 @@ export default function Landing() {
                             </div>
                             <li className="nav-item">
                                 <a className="nav-link" href="javascript:void(0);">
-                                <i class="bi bi-speedometer2"></i>Dashboard
+                                    <i class="bi bi-tools"></i>Features
                                 </a>
                             </li>
                             <li className="nav-item active">
                                 <a className="nav-link" href="javascript:void(0);">
-                                    <i className="far fa-address-book"></i>Address Book
+                                    <i class="bi bi-info-circle-fill"></i>About Us
                                 </a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="javascript:void(0);">
-                                    <i className="far fa-clone"></i>Components
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="javascript:void(0);">
-                                    <i className="far fa-calendar-alt"></i>Calendar
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="javascript:void(0);">
-                                    <i className="far fa-chart-bar"></i>Charts
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="javascript:void(0);">
-                                    <i className="far fa-copy"></i>Documents
+                                <i class="bi bi-envelope-at-fill"></i>Contacts
                                 </a>
                             </li>
                         </ul>
