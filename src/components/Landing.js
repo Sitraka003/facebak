@@ -90,6 +90,18 @@ export default function Landing() {
                             </li>
                         </ul>
                     </div>
+                    <div>
+                        <button type="button" className="sign-up-btn">
+                            <a href="/sign-up">
+                                SignUp
+                            </a>
+                        </button>
+                        <button type="button" className="sign-in-btn">
+                            <a href="/sign-in">
+                                SignIn
+                            </a>
+                        </button>
+                    </div>
                 </nav>
             </div>
         </>
