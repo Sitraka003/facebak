@@ -8,6 +8,8 @@
 }
 
 * {
+    outline: none !important;
+    box-sizing: border-box;
     font-family: "MarkPro", sans-serif !important;
 }
 
