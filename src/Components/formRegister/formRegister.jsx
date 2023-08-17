@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"
 
 const FormRegister = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        email: '',
+        username: '',
+        confirmPassword: ''
+    });
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+
+        try{
+            const response = await axios.post('http://localhost:8080/users', user)
+            localStorage.setItem("token", response.data.token)
+            localStorage.setItem('user', JSON.stringify(user))
+
+            navigate('/username='+user.username)
+        }catch(error){
+            if(error.response){
+                console.log(error.response.data);
+            }
+        }
+    }
     return (
         <section>
             <div className="h-screen px-6 flex flex-col items-center justify-center">
@@ -18,7 +42,7 @@ const FormRegister = () => {
                     </div>
 
                     <div className="mb-12 md:mb-0 md:w-9/12 lg:w-6/12 xl:w-6/12">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             {/* - Username - */}
                             <div
                                 className="relative mb-10"
@@ -30,6 +54,8 @@ const FormRegister = () => {
                                     name="username"
                                     className="peer text-white bg-transparent h-10 rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="Username"
+                                    value={user.username}
+                                    onChange={e=>setUser({...user, username: e.target.value})}
                                 />
 
                                 <label
@@ -51,6 +77,8 @@ const FormRegister = () => {
                                     name="email"
                                     className="peer text-white bg-transparent h-10 rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="Email"
+                                    value={user.email}
+                                    onChange={e=>setUser({...user, email: e.target.value})}
                                 />
 
                                 <label
@@ -70,6 +98,8 @@ const FormRegister = () => {
                                     name="password"
                                     className="peer bg-transparent h-10 rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="password"
+                                    value={user.password}
+                                    onChange={e=>setUser({...user, password: e.target.value})}
                                 />
                                 <label
                                     for="password"
@@ -88,6 +118,8 @@ const FormRegister = () => {
                                     name="password"
                                     className="peer bg-transparent h-10 rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="Confirm password"
+                                    value={user.confirmPassword}
+                                    onChange={e=>setUser({...user, confirmPassword: e.target.value})}
                                 />
                                 <label
                                     for="password"
