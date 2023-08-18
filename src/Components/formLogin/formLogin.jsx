@@ -1,11 +1,30 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
+import axios from "axios";
 
 const FormLogin = () => {
+    const [value,setValue]=useState(
+        {
+            email:"",
+            password:""
+        }
+    );
+const handleAuthentification= async ()=>{
+try{
+    const response=await axios.put("http://127.0.0.1:8080/users",{email:value.email,password:value.password})
+    const userData=response.data;
+    console.log(userData);
+
+}
+catch(error){
+console.log(error);
+}
+}
+    
+    
     return (
         <div>
             <section className="bg-black">
@@ -30,6 +49,8 @@ const FormLogin = () => {
                                         Your email
                                     </label>
                                     <input
+                                    value={value.email}
+                                        onChange={(e)=>setValue({...value, email: e.target.value})}
                                         type="email"
                                         name="email"
                                         id="email"
@@ -46,6 +67,8 @@ const FormLogin = () => {
                                         Password
                                     </label>
                                     <input
+                                    value={value.password}
+                                        onChange={e=>setValue({...value,password:e.target.value})}
                                         type="password"
                                         name="password"
                                         id="password"
@@ -84,8 +107,12 @@ const FormLogin = () => {
                                 <button
                                     type="submit"
                                     className="w-full text-gray-900 bg-gray-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                  onClick={handleAuthentification}
+                                     
                                 >
-                                    Sign in
+                                  
+                                   sign in
+                                   
                                 </button>
 
                                 {/* - register redirection link - */}
