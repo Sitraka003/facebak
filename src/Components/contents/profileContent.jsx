@@ -1,7 +1,19 @@
 import React from "react";
 import Profile from "../../assets/imgs/profile.jpg";
 import { BiEditAlt } from "react-icons/bi";
+import { useEffect, useState, useContext } from "react";
 const ProfileContent = () => {
+    const [username, setUserName] = useState("")
+    const [email, setEmail] = useState("")
+    const [id, setId] = useState("")
+
+    useEffect(()=>{
+        const userString = localStorage.getItem('user');
+        const user = JSON.parse(userString)
+        setUserName(user.username)
+        setEmail(user.email)
+        setId(user.id)
+    }, [])
     return (
         <section className="container mx-auto mt-8 mx-16 ">
             <div className="border-b-2 border-gray-300 pb-5">
@@ -30,12 +42,12 @@ const ProfileContent = () => {
                         {/* Informations */}
                         <div className="flex justify-center">
                             <h1 className="text-white font-semibold text-[0.8rem]">
-                                Lalaina
+                                {username}
                             </h1>
                         </div>
                         <div className="flex justify-center">
                             <h2 className="text-gray-400 text-sm  text-[0.7rem]">
-                                @lalaina0904
+                                {email}
                             </h2>
                         </div>
                     </div>

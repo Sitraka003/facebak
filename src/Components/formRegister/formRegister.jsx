@@ -4,8 +4,39 @@ import { Link } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const FormRegister = () => {
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState({ 
+        email: '', 
+        username: '',
+        confirmPassword: ''
+      });
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const response = await axios.post('http://localhost:8080/users', user)
+          localStorage.setItem("token", response.data.token)
+          localStorage.setItem('user', JSON.stringify(user))
+          
+          console.log(response.data);
+          navigate('/?username='+user.username)
+          console.log(user);
+        } catch (error) {
+          if(error.response){
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        }
+      };
+
     return (
         <section className="h-screen">
             <div className="h-full container mx-auto px-6 flex flex-col items-center justify-center">
@@ -18,7 +49,7 @@ const FormRegister = () => {
                     </div>
 
                     <div className="mb-12 md:mb-0 md:w-9/12 lg:w-6/12 xl:w-6/12">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             {/* - Username - */}
                             <div
                                 className="relative mb-10"
@@ -30,6 +61,8 @@ const FormRegister = () => {
                                     name="username"
                                     className="peer text-white bg-transparent h-10 w-full rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
                                     placeholder="Username"
+                                    value={user.username}
+                                    onChange={e=>setUser({...user, username: e.target.value})}
                                 />
 
                                 <label
@@ -51,6 +84,8 @@ const FormRegister = () => {
                                     name="email"
                                     className="peer text-white bg-transparent h-10 w-full rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
                                     placeholder="Email"
+                                    value={user.email}
+                                    onChange={e=>setUser({...user, email: e.target.value})}
                                 />
 
                                 <label
@@ -70,6 +105,8 @@ const FormRegister = () => {
                                     name="password"
                                     className="peer bg-transparent h-10 w-full rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
                                     placeholder="password"
+                                    value={user.password}
+                                    onChange={e=>setUser({...user, password: e.target.value})}
                                 />
                                 <label
                                     for="password"
@@ -84,10 +121,12 @@ const FormRegister = () => {
                             <div class="relative bg-inherit  mb-10">
                                 <input
                                     type="password"
-                                    id="password"
-                                    name="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
                                     className="peer bg-transparent h-10 w-full rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
                                     placeholder="Confirm password"
+                                    value={user.confirmPassword}
+                                    onChange={e=>setUser({...user, confirmPassword: e.target.value})}
                                 />
                                 <label
                                     for="password"
