@@ -1,50 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"
 
 const FormRegister = () => {
     const navigate = useNavigate();
-
-    const [user, setUser] = useState({ 
-        email: '', 
+    const [user, setUser] = useState({
+        email: '',
         username: '',
         confirmPassword: ''
-      });
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-          const response = await axios.post('http://localhost:8080/users', user)
-          localStorage.setItem("token", response.data.token)
-          localStorage.setItem('user', JSON.stringify(user))
-          
-          console.log(response.data);
-          navigate('/?username='+user.username)
-          console.log(user);
-        } catch (error) {
-          if(error.response){
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        }
-      };
+    });
 
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+
+        try{
+            const response = await axios.post('http://localhost:8080/users', user)
+            localStorage.setItem("token", response.data.token)
+            localStorage.setItem('user', JSON.stringify(user))
+
+            navigate('/username='+user.username)
+        }catch(error){
+            if(error.response){
+                console.log(error.response.data);
+            }
+        }
+    }
     return (
-        <section className="h-screen">
-            <div className="h-full container mx-auto px-6 flex flex-col items-center justify-center">
-                <div className="g-6 flex flex-col items-center justify-center h-fit w-full">
+        <section>
+            <div className="h-screen px-6 flex flex-col items-center justify-center">
+                <div className="g-6 flex flex-col items-center justify-center h-fit w-full container mx-auto">
                     {/* - Title - */}
                     <div className="mb-16">
                         <h1 className="text-2xl font-semibold">
-                            Register to hollow app
+                            Register to facebak app
                         </h1>
                     </div>
 
@@ -59,7 +52,7 @@ const FormRegister = () => {
                                     type="text"
                                     id="username"
                                     name="username"
-                                    className="peer text-white bg-transparent h-10 w-full rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
+                                    className="peer text-white bg-transparent h-10 rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="Username"
                                     value={user.username}
                                     onChange={e=>setUser({...user, username: e.target.value})}
@@ -82,7 +75,7 @@ const FormRegister = () => {
                                     type="text"
                                     id="email"
                                     name="email"
-                                    className="peer text-white bg-transparent h-10 w-full rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
+                                    className="peer text-white bg-transparent h-10 rounded-lg placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="Email"
                                     value={user.email}
                                     onChange={e=>setUser({...user, email: e.target.value})}
@@ -103,7 +96,7 @@ const FormRegister = () => {
                                     type="password"
                                     id="password"
                                     name="password"
-                                    className="peer bg-transparent h-10 w-full rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
+                                    className="peer bg-transparent h-10 rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
                                     placeholder="password"
                                     value={user.password}
                                     onChange={e=>setUser({...user, password: e.target.value})}

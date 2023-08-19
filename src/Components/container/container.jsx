@@ -18,7 +18,7 @@ import UserProfil from "../userProfil/userProfil.jsx";
 import Profile1 from "../../assets/imgs/profile.jpg";
 
 import Footer from "../footer/footer.jsx";
-import { useState, useEffect, useContext } from "react";
+import {useState, useEffect} from "react";
 
 const Container = ({ iconPage, namePage }) => {
     const [username, setUserName] = useState("")
