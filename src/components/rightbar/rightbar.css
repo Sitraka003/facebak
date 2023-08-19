@@ -1,0 +1,7 @@
+.rightbarContainer {
+  height: 100%;
+  position: sticky !important;
+  top: 64px !important;
+  margin-top: 20px !important;
+  max-width: 25%;
+}

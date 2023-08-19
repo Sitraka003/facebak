@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Facebak - Social Media Application
+## Project Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Facebak is a social media application that allows users to create and share content, as well as participate in social networking. This project aims to provide hands-on experience in building a full-stack web application using technologies like React, React Router, Fetch API, and Axios.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clone the frontend from [GitHub repository](https://github.com/Sitraka003/facebak).
+2. Clone the backend from [GitHub repository](https://github.com/YumeT023/facebak-api#readme).
+3. Follow the specific installation instructions for both frontend and backend repositories to set up.
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Run the backend in development mode with BDD.
+2. Run the frontend locally using the `npm start` command.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Routes and Features
 
-### `npm test`
+- `/sign-up`: Sign-up page with fields for email, password, confirm password, and username.
+- `/login`: Login page for existing users.
+- `/posts`:
+  - `/`: Newsfeed page with the ability to create and update posts.
+  - `/:post_id`: Page for a specific post with the ability to comment and like the post.
+- `/profile`:
+  - `/`: Profile page of the connected user with the ability to view and edit profile information.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## To-Do
 
-### `npm run build`
+- Run the backend in development mode with BDD.
+- Clone the frontend repository.
+- Design the newsfeed using frameworks like Bootstrap 5, Tailwind, Bulma, MUI, Chakra UI, or plain CSS.
+- Install Postman for API testing.
+- Learn about Promises in JavaScript for handling asynchronous operations.
+- Understand JWT for authentication purposes.
+- Explore Axios and Fetch HTTP clients for making API calls.
+- Dive deeper into React hooks like useState, useEffect, and useRef.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Recommended Learning
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Check out the React resources mentioned in the Resources section.
+- Learn about Promises in JavaScript by following the tutorial on [JavaScript.info](https://javascript.info/async).
+- Familiarize yourself with JSON Web Tokens (JWT) on [jwt.io](https://jwt.io/introduction).
+- Explore Axios and Fetch HTTP clients for interacting with APIs.
+- Follow the [React Hooks](https://react.dev/reference/react) tutorial to understand the usage of basic hooks.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
