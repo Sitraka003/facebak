@@ -89,7 +89,7 @@ const Sidebar = () => {
                     </div>
                     <div className="p-4 flex items-center">
                         <button type="button" class="">
-                            <a href="#logout">
+                            <a href="/login">
                                 <CiLogout className="text-2xl text-white" />
                             </a>
                         </button>

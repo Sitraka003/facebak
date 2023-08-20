@@ -66,7 +66,7 @@ const HomeContent = () => {
     const [value, setValue] = useState({
         content: '',
         photo: '',
-        userId: ''
+        userId: '',
     })
     const handlePost = async (e)=>{
         e.preventDefault()
@@ -92,6 +92,7 @@ const HomeContent = () => {
         try{
             const res = await axios.get('http://localhost:8080/posts')
             setUserPosts(res.data)
+            console.log(res.data);
         }catch(err){
             console.log(err);
         }
@@ -279,9 +280,9 @@ const HomeContent = () => {
                                 </div>
                             }
                         */
-                            like="2K"
+                            like={userPost._count.reactions}
                             share="100"
-                            comments="50"
+                            comments={userPost._count.comments}
                         />
                                     </div>
                                 ))}
