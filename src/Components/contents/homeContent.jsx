@@ -31,7 +31,7 @@ const HomeContent = () => {
         setId(user.id)
     }, [])
 
-   /* useEffect(()=>{
+    useEffect(()=>{
         getUsers();
     }, []);
     
@@ -57,9 +57,9 @@ const HomeContent = () => {
           }
           return userIdCont
     }
-       getUsers().then(userIds => {
+        getUsers().then(userIds => {
            value.userId = userIds
-        });*/
+        });
         
     ;
     const [posts, setPost] = useState(null)
@@ -67,9 +67,6 @@ const HomeContent = () => {
         content: '',
         photo: '',
         userId: ''
-    })
-    useEffect(()=>{
-        value.userId=id
     })
     const handlePost = async (e)=>{
         e.preventDefault()
