@@ -14,7 +14,6 @@ import Profile from "../../assets/imgs/profile.jpg";
 
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 
-import style from "./post.scss";
 
 const Post = ({
     description,
