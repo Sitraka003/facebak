@@ -17,6 +17,12 @@ const ProfileContent = () => {
         setId(user.id)
 
     }, [])
+    const handleProfilChange=()=>{
+        const input=document.createElement("input");
+        input.type="file"
+        input.accept="image/*"
+        input.onchange=''
+    }
     return (
         <section className="container mx-auto mt-8 mx-16 ">
             <div className="border-b-2 border-gray-300 pb-5">

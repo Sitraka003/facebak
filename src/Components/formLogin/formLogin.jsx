@@ -15,12 +15,14 @@ const FormLogin = () => {
     );
     const [isAuthentified,setIsAuthentified]=useState(false)
     const [showError,setShowError]=useState(false)
-const handleAuthentification= async ()=>{
+const handleAuthentification = async (e)=>{
+    e.preventDefault();
 try{
-    const response=await axios.put("http://127.0.0.1:8080/users",{email:value.email,password:value.password})
+    const response=await axios.put("http://localhost:8080/users",value)
     const userData=response.data;
     if(userData){
-       navigate("/")
+      navigate("/")
+      console.log(userData);
         setIsAuthentified(true);
     }
    
@@ -45,7 +47,7 @@ setShowError(true)
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-2xl dark:text-white text-center pb-5">
                                 Sign in to your account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleAuthentification}>
                                 <div className="flex flex-col justify-center items-center">
                                     <label
                                         for="email"
@@ -112,7 +114,6 @@ setShowError(true)
                                 <div className="w-full flex">
                                     <button
                                         type="submit"
-                                        onClick={handleAuthentification}
                                         className="w-full text-gray-900 bg-gray-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                     
                                     >
