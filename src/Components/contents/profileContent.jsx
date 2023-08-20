@@ -59,7 +59,6 @@ const ProfileContent = () => {
                             </h2>
                         </div>
                         <div className="flex justify-center items-center mt-1.5">
-                                  <button className="text-white">add bio</button>
                         </div>
 
 
