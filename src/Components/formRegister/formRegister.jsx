@@ -114,9 +114,9 @@ const FormRegister = () => {
                             <div class="relative bg-inherit  mb-10">
                                 <input
                                     type="password"
-                                    id="password"
-                                    name="password"
-                                    className="peer bg-transparent h-10 rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none w-[-webkit-fill-available]"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    className="peer bg-transparent h-10 w-full rounded-lg text-white placeholder-transparent ring-2 px-2 ring-gray-500 focus:ring-slate-300 focus:outline-none focus:border-rose-600"
                                     placeholder="Confirm password"
                                     value={user.confirmPassword}
                                     onChange={e=>setUser({...user, confirmPassword: e.target.value})}
