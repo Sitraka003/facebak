@@ -66,7 +66,9 @@ const HomeContent = () => {
     const [value, setValue] = useState({
         content: '',
         photo: '',
-        userId: ''
+        userId: '',
+        numberOfComment:null,
+        numberOfReaction:null
     })
     const handlePost = async (e)=>{
         e.preventDefault()
