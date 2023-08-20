@@ -44,3 +44,15 @@ export const deleteUser = async (userId) => {
     throw new Error(errorData.message);
   }
 };
+
+/*
+    Les informations nécéssaire pour faire un user
+{
+    "email": "manoalahatra@gmail.com",
+    "username": "manoalahatra",
+    "password": "manoalahatra",
+    "confirmPassword": "manoalahatra",
+    "bio": "deploy B2B networks",
+    "photo": "https://robohash.org/autlaudantiumeveniet.png?size=50x50&set=set1"
+}
+*/
