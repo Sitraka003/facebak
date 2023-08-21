@@ -283,6 +283,7 @@ const HomeContent = () => {
                             like={userPost._count.reactions}
                             share="100"
                             comments={userPost._count.comments}
+                            postId={userPost.id}
                         />
                                     </div>
                                 ))}
