@@ -253,7 +253,7 @@ const HomeContent = () => {
                             }
                             profileImage={userPost.user.photo}
                             username={userPost.user.username}
-                            postImage={userPost.photo}
+                            postImage={userPost.content}
                             postHour={userPost.createdAt}
                             /*
                         hashtag={
