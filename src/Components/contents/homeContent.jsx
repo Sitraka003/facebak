@@ -299,9 +299,9 @@ const HomeContent = () => {
                                 </div>
                             }
                         */
-                            like={userPost._count.reactions}
+                           /* like={userPost._count.reactions}*/
                             share="100"
-                            comments={userPost._count.comments}
+                            /*comments={userPost._count.comments}*/
                             postId={userPost.id}
                         
                             
