@@ -11,10 +11,11 @@ import Profile2 from "../../assets/imgs/profile2.jpg";
 import Profile3 from "../../assets/imgs/profile3.jpg";
 import Post1 from "../../assets/imgs/post1.jpeg";
 import Post2 from "../../assets/imgs/post2.jpeg";
-
+import Comment from "../comment/comment.jsx";
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { async } from "q";
 
 const HomeContent = () => {
     const [users, setUsers] = useState([]);
@@ -87,17 +88,34 @@ const HomeContent = () => {
     useEffect(()=>{
         getPosts();
     }, [])
+    const [userComments,setUserComments]=useState([])
 
     const getPosts = async ()=>{
         try{
             const res = await axios.get('http://localhost:8080/posts')
             setUserPosts(res.data)
-            console.log(res.data);
+            const updatePostsComments={};
+            for(const post of res.data){
+                const postId=post.id;
+                const comments=await getComments(postId)
+                updatePostsComments[postId]=comments
+            }
+            setUserComments(updatePostsComments)
+            console.log(updatePostsComments);
         }catch(err){
             console.log(err);
         }
     }
-
+    const getComments=async (idPost)=>{
+        try{
+            const res=await axios.get(`http://localhost:8080/posts/${idPost}/comments`)
+            return res.data;
+            
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
     return (
         <div className="lg:grid grid-cols-5 gap-2 lg:gap-6 my-4 mx-2 md:mx-3 lg:mx-8 xl:mx-10 xl:gap-12">
             {/* --------------------  right Side --> Correspond aux Posts---------------------- */}
@@ -245,6 +263,7 @@ const HomeContent = () => {
 
                    
                                 {userPosts.map((userPost, index)=>(
+                                   
                                     <div key={index} className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5">
                                             <Post
                             description={
@@ -283,7 +302,18 @@ const HomeContent = () => {
                             like={userPost._count.reactions}
                             share="100"
                             comments={userPost._count.comments}
+                            postId={userPost.id}
+                        
+                            
                         />
+                        {
+                            userComments[userPost.id]&&userComments[userPost.id].map((comment,indexComment)=>(
+                                <div key={comment.id}>
+                                    
+                                    <Comment img={comment.user.photo} commentContent={comment.content} userName={comment.user.username}/>
+                                </div>
+                            ))
+                        }
                                     </div>
                                 ))}
                     
