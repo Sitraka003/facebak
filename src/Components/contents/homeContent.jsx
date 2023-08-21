@@ -4,8 +4,8 @@ import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineLink } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsEmojiSmile } from "react-icons/bs";
-
 import Post from "../post/post.jsx";
+
 import Profile from "../../assets/imgs/profile.jpg";
 import Profile2 from "../../assets/imgs/profile2.jpg";
 import Profile3 from "../../assets/imgs/profile3.jpg";
@@ -16,6 +16,7 @@ import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { async } from "q";
+import io from "socket.io-client"
 
 const HomeContent = () => {
     const [users, setUsers] = useState([]);
@@ -23,7 +24,37 @@ const HomeContent = () => {
     const [username, setUserName] = useState("")
     const [email, setEmail] = useState("")
     const [id, setId] = useState("")
+    const [socket, setSocket] = useState(null);
 
+    useEffect(() => {
+        // Établir une connexion WebSocket
+        const newSocket = io("http://localhost:4000"); // Remplacez par l'URL de votre serveur socket
+    
+        // Écouter les événements de la connexion WebSocket
+        newSocket.on("connect", () => {
+          console.log("Connecté au serveur WebSocket");
+        });
+        newSocket.on("newPost", (newPost) => {
+            console.log("Nouveau post reçu :", newPost);
+            
+            // Mettre à jour l'état des posts en ajoutant le nouveau post à la liste actuelle
+            setUserPosts((prevPosts) => [...prevPosts, newPost]);
+          });
+         
+    
+        newSocket.on("disconnect", () => {
+          console.log("Déconnecté du serveur WebSocket");
+        });
+    
+        setSocket(newSocket);
+    
+        // Nettoyage : fermer la connexion WebSocket lors du démontage du composant
+        return () => {
+          if (socket) {
+            socket.disconnect();
+          }
+        };
+      }, []);
     useEffect(()=>{
         const userString = localStorage.getItem('user');
         const user = JSON.parse(userString)
@@ -76,8 +107,9 @@ const HomeContent = () => {
             const response = await axios.put("http://localhost:8080/posts", value)
             const postData = response.data
             setPost(response.data)
-
-            console.log(postData);
+            if(socket){
+                socket.emit("newPost",postData)
+            }
         }catch(error){
             console.log(error);
         }
@@ -299,9 +331,11 @@ const HomeContent = () => {
                                 </div>
                             }
                         */
-                            like={userPost._count.reactions}
+                            //like={userPost._count.reactions}
+                            like="10"
                             share="100"
-                            comments={userPost._count.comments}
+                            //comments={userPost._count.comments}
+                            comments="10"
                             postId={userPost.id}
                         
                             
