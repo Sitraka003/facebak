@@ -18,20 +18,20 @@ import UserProfil from "../userProfil/userProfil.jsx";
 import Profile1 from "../../assets/imgs/profile.jpg";
 
 import Footer from "../footer/footer.jsx";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const Container = ({ iconPage, namePage }) => {
-    const [username, setUserName] = useState("")
-    const [email, setEmail] = useState("")
-    const [id, setId] = useState("")
+    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [id, setId] = useState("");
 
-    useEffect(()=>{
-        const userString = localStorage.getItem('user');
-        const user = JSON.parse(userString)
-        setUserName(user.username)
-        setEmail(user.email)
-        setId(user.id)
-    }, [])
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setUserName(user.username);
+        setEmail(user.email);
+        setId(user.id);
+    }, []);
     return (
         <section>
             <div className="ml-16 lg:ml-48 max-h-screen overflow-auto bg-[#050e15bd] h-screen flex justify-center">
@@ -89,17 +89,21 @@ const Container = ({ iconPage, namePage }) => {
                                 </div>
                             </div>
                             {/* Profile */}
-                          {/*  <UserProfil
-                                pseudo="Lalaina"
-                                username="@lalaina0904"
-                                userImage={Profile1}
-                            />*/}
-                            {username && <span className="text-white font-semibold text-[0.8rem]">
-                                            {username}
-                                        </span>}
-                                        {email && <span className="text-gray-400 text-sm  text-[0.7rem]">
-                                            {email}
-                                        </span>}
+                            <UserProfil
+                                pseudo={email}
+                                username={username}
+                                // userImage={Profile1}
+                            />
+                            {/* {username && (
+                                <span className="text-white font-semibold text-[0.8rem]">
+                                    {username}
+                                </span>
+                            )}
+                            {email && (
+                                <span className="text-gray-400 text-sm  text-[0.7rem]">
+                                    {email}
+                                </span>
+                            )} */}
                         </div>
                     </header>
 
