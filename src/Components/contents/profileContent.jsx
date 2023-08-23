@@ -2,10 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Profile from "../../assets/imgs/profile.jpg";
 import { BiEditAlt } from "react-icons/bi";
+import { useState, useEffect } from "react";
+
 const ProfileContent = () => {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
+    const [pic, setPic] = useState("");
 
     useEffect(() => {
         const userString = localStorage.getItem("user");
@@ -14,6 +17,12 @@ const ProfileContent = () => {
         setEmail(user.email);
         setId(user.id);
     }, []);
+    const handleProfilChange = () => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.onchange = "";
+    };
     return (
         <section className="container mx-auto mt-8">
             <div className="border-b-2 border-gray-300 pb-5">
@@ -50,6 +59,10 @@ const ProfileContent = () => {
                                 {email}
                             </h2>
                         </div>
+                        <div className="flex justify-center">
+                            <h2 className="text-gray-400 text-sm  text-[0.7rem]"></h2>
+                        </div>
+                        <div className="flex justify-center items-center mt-1.5"></div>
                     </div>
                 </div>
 

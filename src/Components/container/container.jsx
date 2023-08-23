@@ -89,6 +89,7 @@ const Container = ({ iconPage, namePage }) => {
                                 </div>
                             </div>
                             {/* Profile */}
+<<<<<<< HEAD
                             <UserProfil
                                 pseudo={email}
                                 username={username}
@@ -104,6 +105,19 @@ const Container = ({ iconPage, namePage }) => {
                                     {email}
                                 </span>
                             )} */}
+=======
+                           <UserProfil
+                                pseudo={username}
+                                username={email}
+                                userImage={Profile1}
+    />
+                                       {/* {username && <span className="text-white font-semibold text-[0.8rem]">
+                                            {username}
+                                        </span>}
+                                        {email && <span className="text-gray-400 text-sm  text-[0.7rem]">
+                                            {email}
+    </span>}*/}
+>>>>>>> main
                         </div>
                     </header>
 

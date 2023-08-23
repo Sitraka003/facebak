@@ -1,11 +1,43 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { AiOutlineGoogle } from "react-icons/ai";
 
 import { BsChevronRight } from "react-icons/bs";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const FormLogin = () => {
+    const navigate=useNavigate()
+    const [value,setValue]=useState(
+        {
+            email:"",
+            password:""
+        }
+    );
+    const [isAuthentified,setIsAuthentified]=useState(false)
+    const [showError,setShowError]=useState(false)
+const handleAuthentification = async (e)=>{
+    e.preventDefault();
+try{
+    const response=await axios.put("http://localhost:8080/users",value)
+    const userData=response.data;
+    if(userData){
+      navigate("/")
+      console.log(userData);
+        setIsAuthentified(true);
+    }
+   
+    console.log(userData);
+    localStorage.setItem("user",JSON.stringify(userData))
+
+}
+catch(error){
+console.log(error);
+setIsAuthentified(false)
+setShowError(true)
+}
+}
+    
+    
     return (
         <div>
             <section className="bg-black">
@@ -15,7 +47,7 @@ const FormLogin = () => {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-2xl dark:text-white text-center pb-5">
                                 Sign in to your account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleAuthentification}>
                                 <div className="flex flex-col justify-center items-center">
                                     <label
                                         for="email"
@@ -24,6 +56,8 @@ const FormLogin = () => {
                                         Your email
                                     </label>
                                     <input
+                                    value={value.email}
+                                        onChange={(e)=>setValue({...value, email: e.target.value})}
                                         type="email"
                                         name="email"
                                         id="email"
@@ -39,6 +73,8 @@ const FormLogin = () => {
                                         Password
                                     </label>
                                     <input
+                                    value={value.password}
+                                        onChange={e=>setValue({...value,password:e.target.value})}
                                         type="password"
                                         name="password"
                                         id="password"
@@ -68,19 +104,28 @@ const FormLogin = () => {
                                     <a
                                         href="#passwd"
                                         className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                                        
                                     >
+
                                         Forgot password?
                                     </a>
                                 </div>
+                              
                                 <div className="w-full flex">
                                     <button
                                         type="submit"
                                         className="w-full text-gray-900 bg-gray-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                    
                                     >
-                                        Sign in
+                                    sign in  
                                     </button>
+                                 
                                 </div>
-
+                                {
+                                        !isAuthentified&&showError?(
+                                            <div>your email or password is incorrect</div>
+                                        ):null
+                                    }
                                 {/* - register redirection link - */}
                                 <p className="mb-0 mt-5 pt-1 text-sm font-semibold text-white">
                                     Don't have an account?
