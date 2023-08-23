@@ -349,29 +349,27 @@ const HomeContent = () => {
                                         #style
                                     </a>
                                 </div>
-                                }
-                                */
-                                //like={userPost._count.reactions}
-                                like="10"
-                                share="100"
-                                //comments={userPost._count.comments}
-                                comments="10"
-                                postId={userPost.id}
-                            />
-                            {userComments[userPost.id] &&
-                                userComments[userPost.id].map(
-                                    (comment, indexComment) => (
-                                        <div key={comment.id}>
-                                            <Comment
-                                                img={comment.user.photo}
-                                                commentContent={comment.content}
-                                                userName={comment.user.username}
-                                            />
-                                        </div>
-                                    )
-                                )}
-                        </div>
-                    ))}
+                            }
+                        */
+                            like={userPost._count.reactions}
+                            share="100"
+                            comments={userPost._count.comments}
+                            postId={userPost.id}
+                        
+                            
+                        />
+                        {
+                              userComments[userPost.id]&&userComments[userPost.id].map((comment,indexComment)=>(
+                                <div key={comment.id}>
+
+                                    <Comment img={comment.user.photo} commentContent={comment.content} userName={comment.user.username}/>
+                                </div>
+                            ))
+                        }
+                                    </div>
+                                ))}
+                         
+                    
                 </div>
             </div>
 
