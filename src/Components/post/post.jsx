@@ -16,7 +16,6 @@ import Profile from "../../assets/imgs/profile.jpg";
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { addComment } from "@babel/types";
 
-
 const Post = ({
     description,
     profileImage,
@@ -27,34 +26,34 @@ const Post = ({
     like,
     share,
     comments,
-    postId
+    postId,
 }) => {
-    
-    const [id, setId] = useState("")
-useEffect(()=>{
-    const userString = localStorage.getItem('user');
-    const user = JSON.parse(userString)
-    setId(user.id)
-}, [])
+    const [id, setId] = useState("");
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setId(user.id);
+    }, []);
 
+    const [comment, setComment] = useState({
+        content: "",
+        userId: "",
+    });
+    useEffect(() => {
+        comment.userId = id;
+    });
 
-    const [comment,setComment]=useState({
-        content:"",
-        userId:""
-    })
-useEffect(()=>{
-    comment.userId=id
-})
-
-const AddComment=async (postId)=>{
-    try{
-        const res=await axios.put(`http://localhost:8080/posts/${postId}/comments`,comment)
-    }
-    catch(err){
-        console.log(err);
-    }
-    comment.content="";
-}
+    const AddComment = async (postId) => {
+        try {
+            const res = await axios.put(
+                `http://localhost:8080/posts/${postId}/comments`,
+                comment
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        comment.content = "";
+    };
     return (
         <section>
             <div className="flex items-center gap-3">
@@ -156,7 +155,16 @@ const AddComment=async (postId)=>{
                             >
                                 {/* Text area - Input text for comments */}
 
-                                <TextareaForm value={comment.content} onChange={(e)=>setComment({...comment,content:e.target.value})} placeholder="Write a comment..." />
+                                <TextareaForm
+                                    value={comment.content}
+                                    onChange={(e) =>
+                                        setComment({
+                                            ...comment,
+                                            content: e.target.value,
+                                        })
+                                    }
+                                    placeholder="Write a comment..."
+                                />
 
                                 <div className="flex gap-4 items-center justify-end p-3">
                                     <a href="#photo">
@@ -177,7 +185,10 @@ const AddComment=async (postId)=>{
                                 </div>
                             </div>
 
-                            <button className=" px-3 rounded-md text-gray-50 text-[1.2rem]" onClick={()=>AddComment(postId)}>
+                            <button
+                                className=" px-3 rounded-md text-gray-50 text-[1.2rem]"
+                                onClick={() => AddComment(postId)}
+                            >
                                 <a href="#send">
                                     <BiSend />
                                 </a>

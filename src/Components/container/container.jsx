@@ -6,12 +6,12 @@ import { IoChatbubbles, IoSettings } from "react-icons/io5";
 import HomeContent from "../contents/homeContent.jsx";
 import CommunityContent from "../contents/communityContent.jsx";
 import MarketplaceContent from "../contents/marketplaceContent.jsx";
-import NewsContent from "../contents/newsContent.jsx";
+// import NewsContent from "../contents/newsContent.jsx";
 
 import MessagesContent from "../contents/messagesContent.jsx";
 import SettingsContent from "../contents/settingsContent.jsx";
 import ProfileContent from "../contents/profileContent.jsx";
-import NotificationsContent from "../contents/notificationsContent.jsx";
+// import NotificationsContent from "../contents/notificationsContent.jsx";
 
 import UserProfil from "../userProfil/userProfil.jsx";
 
@@ -65,17 +65,7 @@ const Container = ({ iconPage, namePage }) => {
                                         </Link>
                                     </div>
                                 </div>
-                                {/* Notification */}
-                                <div className="flex items-center">
-                                    <div className="bg-gray-900 rounded-full p-0 mr-1 md:p-2 md:mr-0">
-                                        <Link
-                                            to="/Notifications"
-                                            className="cursor-pointer"
-                                        >
-                                            <BsFillBellFill />
-                                        </Link>
-                                    </div>
-                                </div>
+
                                 {/* Settings */}
                                 <div className="flex items-center">
                                     <div className="bg-gray-900 rounded-full p-0 mr-1 md:p-2 md:mr-0">
@@ -89,35 +79,17 @@ const Container = ({ iconPage, namePage }) => {
                                 </div>
                             </div>
                             {/* Profile */}
-<<<<<<< HEAD
                             <UserProfil
-                                pseudo={email}
-                                username={username}
-                                // userImage={Profile1}
-                            />
-                            {/* {username && (
-                                <span className="text-white font-semibold text-[0.8rem]">
-                                    {username}
-                                </span>
-                            )}
-                            {email && (
-                                <span className="text-gray-400 text-sm  text-[0.7rem]">
-                                    {email}
-                                </span>
-                            )} */}
-=======
-                           <UserProfil
                                 pseudo={username}
                                 username={email}
                                 userImage={Profile1}
-    />
-                                       {/* {username && <span className="text-white font-semibold text-[0.8rem]">
+                            />
+                            {/* {username && <span className="text-white font-semibold text-[0.8rem]">
                                             {username}
                                         </span>}
                                         {email && <span className="text-gray-400 text-sm  text-[0.7rem]">
                                             {email}
     </span>}*/}
->>>>>>> main
                         </div>
                     </header>
 
@@ -128,10 +100,8 @@ const Container = ({ iconPage, namePage }) => {
                         --- if namePage == "Home" --> show HomeContent 
                         --- if namePage == "Community" ---> show CommunityContent
                         --- if namePage == "Marketplace" ---> show MarketplaceContent
-                        --- if namePage == "News" ---> show NewsContent
                         --- if namePage == "Profile" ---> show ProfileContent
                         --- if namePage == "Settings" ---> show SettingsContent
-                        --- if namePage == "Notifications" ---> show NotificationsContent
                         --- if namePage == "Messages"---> show MessagesContent
                         */}
                             {namePage === "Home" ? (
@@ -140,14 +110,10 @@ const Container = ({ iconPage, namePage }) => {
                                 <CommunityContent />
                             ) : namePage === "Marketplace" ? (
                                 <MarketplaceContent />
-                            ) : namePage === "News" ? (
-                                <NewsContent />
                             ) : namePage === "Profile" ? (
                                 <ProfileContent />
                             ) : namePage === "Settings" ? (
                                 <SettingsContent />
-                            ) : namePage === "Notifications" ? (
-                                <NotificationsContent />
                             ) : namePage === "Messages" ? (
                                 <MessagesContent />
                             ) : (

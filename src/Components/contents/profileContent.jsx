@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import Profile from "../../assets/imgs/profile.jpg";
 import { BiEditAlt } from "react-icons/bi";
 import { useState, useEffect } from "react";
