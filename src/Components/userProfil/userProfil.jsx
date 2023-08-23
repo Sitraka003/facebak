@@ -5,7 +5,15 @@ const UserProfil = ({ pseudo, username, userImage }) => {
     return (
         <div>
             <div className="flex items-center gap-3">
-                <div className="flex-col hidden md:flex">
+                <Link to="/Profile">
+                    <img
+                        src={userImage}
+                        alt=""
+                        className="w-10 h-10 rounded-full border-2 border-gray-2s00"
+                    />
+                </Link>
+
+                <div className="flex-col hidden lg:flex">
                     <p className="text-white font-semibold text-[0.8rem]">
                         {pseudo}
                     </p>
@@ -13,14 +21,6 @@ const UserProfil = ({ pseudo, username, userImage }) => {
                         {username}
                     </p>
                 </div>
-
-                <Link to="/Profile">
-                    <img
-                        src={userImage}
-                        alt=""
-                        className="w-10 h-10 rounded-full"
-                    />
-                </Link>
             </div>
         </div>
     );

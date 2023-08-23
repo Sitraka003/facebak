@@ -7,15 +7,16 @@ import { BsEmojiSmile } from "react-icons/bs";
 import Post from "../post/post.jsx";
 
 import Profile from "../../assets/imgs/profile.jpg";
-import Profile2 from "../../assets/imgs/profile2.jpg";
-import Profile3 from "../../assets/imgs/profile3.jpg";
-import Post1 from "../../assets/imgs/post1.jpeg";
-import Post2 from "../../assets/imgs/post2.jpeg";
+// import Profile2 from "../../assets/imgs/profile2.jpg";
+// import Profile3 from "../../assets/imgs/profile3.jpg";
+// import Post1 from "../../assets/imgs/post1.jpeg";
+// import Post2 from "../../assets/imgs/post2.jpeg";
 import Comment from "../comment/comment.jsx";
 import TextareaForm from "../textareaForm/textareaForm.jsx";
+import ContactList from "../contactList/contactList.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { async } from "q";
+// import { async } from "q";
 import io from "socket.io-client";
 
 const HomeContent = () => {
@@ -159,10 +160,10 @@ const HomeContent = () => {
         }
     };
     return (
-        <div className="lg:grid grid-cols-5 gap-2 lg:gap-6 my-4 mx-2 md:mx-3 lg:mx-8 xl:mx-10 xl:gap-12">
+        <div className="grid grid-cols-5 gap-6 my-4 mx-2 md:mx-3 lg:mx-8 xl:mx-10 xl:gap-12">
             {/* --------------------  right Side --> Correspond aux Posts---------------------- */}
 
-            <div className="col-span-3 max-w-[745px] my-0 mx-auto">
+            <div className="col-span-4 lg:col-span-3 max-w-[745px] my-0 mx-auto">
                 {/*------------- Input field of feeds -------------*/}
 
                 <div className="bg-transparent p-3 rounded-md border-[1px] border-gray-800">
@@ -172,10 +173,9 @@ const HomeContent = () => {
                             alt=""
                             className="w-10 h-10 rounded-full"
                         />
+
                         {/* Textarea - Input Texts */}
-                        {/*
-                       
-                    */}
+
                         <TextareaForm
                             placeholder="What's in your mind ?"
                             bg
@@ -315,7 +315,7 @@ const HomeContent = () => {
                     {userPosts.map((userPost, index) => (
                         <div
                             key={index}
-                            className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5"
+                            className="border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5"
                         >
                             <Post
                                 description={
@@ -328,7 +328,7 @@ const HomeContent = () => {
                                 postImage={userPost.photo}
                                 postHour={userPost.createdAt}
                                 /*
-                        hashtag={
+                                hashtag={
                                 <div className="flex gap-2">
                                     <a
                                         href="#hashtag"
@@ -349,8 +349,8 @@ const HomeContent = () => {
                                         #style
                                     </a>
                                 </div>
-                            }
-                        */
+                                }
+                                */
                                 //like={userPost._count.reactions}
                                 like="10"
                                 share="100"
@@ -375,22 +375,11 @@ const HomeContent = () => {
                 </div>
             </div>
 
-            {/* ----------------------------------55rem--------- left Side ------------------------------------------ */}
-            <div className="col-span-2 mt-5 md:mt-0">
-                {/* --Events-- */}
-                <div className="bg-gray-900 p-2 shadow-[0px_0px_5px_#96d1ff] rounded-md mb-5">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2">
-                            <p className="text-[0.8rem]">Upcoming Events</p>
-                        </div>
-                    </div>
-                </div>
-                {/* contacts */}
-                <div className="bg-gray-900 p-2 shadow-[0px_0px_5px_#96d1ff] rounded-md mb-5">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2">
-                            <p className="text-[0.8rem]">Contacts</p>
-                        </div>
+            {/* ------------------------------------------- left Side ------------------------------------------ */}
+            <div className="col-span-1 lg:col-span-2 mt-3 md:mt-0">
+                <div className="h-fit shadow-[0px_0px_5px_#6a7da0] fixed">
+                    <div className="mb-5 p-5">
+                        <ContactList />
                     </div>
                 </div>
             </div>

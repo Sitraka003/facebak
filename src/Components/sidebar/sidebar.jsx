@@ -11,7 +11,7 @@ const Sidebar = () => {
     return (
         <section>
             <aside
-                className={`fixed inset-y-0 left-0 bg-black border-r-[1px] border-gray-800 max-h-screen w-16 lg:w-48 overflow-y-auto ${style.sidebar}`}
+                className={`fixed inset-y-0 left-0 bg-black border-r-[1px] border-gray-800 max-h-screen w-16 lg:w-48 overflow-y-auto`}
             >
                 <div className="flex flex-col justify-between h-full">
                     <div className="flex-grow">
@@ -21,6 +21,7 @@ const Sidebar = () => {
                             </h1>
 
                             {/* search */}
+                            {/* 
                             <div className="mt-6">
                                 <div className="relative">
                                     <div className="absolute top-0 flex items-center h-full ml-3 md:ml-5">
@@ -29,7 +30,8 @@ const Sidebar = () => {
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
+                            */}
                         </div>
                         <div className="p-2">
                             <ul className="">
