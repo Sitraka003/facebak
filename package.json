@@ -19,6 +19,8 @@
         "react-router-dom": "^6.14.2",
         "react-scripts": "^5.0.1",
         "sass": "^1.64.2",
+        "socket.io": "^4.7.2",
+        "socket.io-client": "^4.7.2",
         "web-vitals": "^2.1.4",
         "yarn": "^1.22.19"
     },
@@ -47,8 +49,6 @@
         ]
     },
     "devDependencies": {
-        "tailwindcss": "^3.3.3",
-        "babel/plugin-proposal-private-property-in-object":""
-
+        "tailwindcss": "^3.3.3"
     }
 }

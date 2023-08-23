@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TextareaForm = ({ placeholder, bg,value,onChange }) => {
+const TextareaForm = ({ placeholder, bg, value, onChange }) => {
     const [comment, setComment] = useState("");
 
     const handleInputChange = (event) => {
@@ -12,8 +12,8 @@ const TextareaForm = ({ placeholder, bg,value,onChange }) => {
         <textarea
             rows="1"
             value={value}
-            onInput={handleInputChange}
             onChange={onChange}
+            onInput={handleInputChange}
             placeholder={placeholder}
             className={`w-full rounded-md px-3 p-3 text-white outline-none resize-none ${
                 bg ? "bg-gray-800 bg-opacity-70" : "bg-transparent"

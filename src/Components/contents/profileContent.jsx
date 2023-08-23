@@ -2,24 +2,24 @@ import React from "react";
 import Profile from "../../assets/imgs/profile.jpg";
 
 import { BiEditAlt } from "react-icons/bi";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const ProfileContent = () => {
-    const [username, setUserName] = useState("")
-    const [email, setEmail] = useState("")
-    const [id, setId] = useState("")
-    const [pic,setPic]=useState("")
-    const [bio,setBio]=useState("")
+    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [id, setId] = useState("");
+    const [pic, setPic] = useState("");
+    const [bio, setBio] = useState("");
 
-    useEffect(()=>{
-        const userString = localStorage.getItem('user');
-        const user = JSON.parse(userString)
-        setUserName(user.username)
-        setEmail(user.email)
-        setId(user.id)
-        setPic(user.photo)
-       // console.log(user.id);
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setUserName(user.username);
+        setEmail(user.email);
+        setId(user.id);
+        setPic(user.photo);
+        // console.log(user.id);
         //getUserById(user.id)
     }, [])
     const getUserById=async (id)=>{
@@ -46,7 +46,6 @@ const ProfileContent = () => {
             console.log(uploadedImage);
 
             console.log("Image téléchargée avec succès.");
-    
         } catch (error) {
             console.error("Erreur lors du téléchargement de l'image :", error);
         }
@@ -54,31 +53,27 @@ const ProfileContent = () => {
 */
     
 
-   
-const [newPic,setNewPic]=useState("");
+    const [newPic, setNewPic] = useState("");
     const handleProfilChange = () => {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.style.display = 'none';
-    
-        fileInput.addEventListener('change', (event) => {
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = "image/*";
+        fileInput.style.display = "none";
+
+        fileInput.addEventListener("change", (event) => {
             const selectedFile = event.target.files[0];
             if (selectedFile) {
-               // sendImage(selectedFile)
-                console.log("image envoyé avec succes",selectedFile.name);
-                //setNewPic("http://localhost:4000/uploads"+selectedFile.name)
-                }
-                
+               // sendImage(selectedFile);
+                console.log("image envoyé avec succes", selectedFile.name);
+                //setNewPic("http://localhost:4000/uploads" + selectedFile.name);
+            }
         });
-      
-    
+
         fileInput.click();
     };
 
-    
     return (
-        <section className="container mx-auto mt-8 mx-16 ">
+        <section className="container mx-auto mt-8">
             <div className="border-b-2 border-gray-300 pb-5">
                 {/* { photo de couverture } */}
                 <div className="h-48 bg-gray-900">
@@ -114,16 +109,12 @@ const [newPic,setNewPic]=useState("");
                             </h2>
                         </div>
                         <div className="flex justify-center">
-                            <h2 className="text-gray-400 text-sm  text-[0.7rem]">
-                                
-                            </h2>
+                            <h2 className="text-gray-400 text-sm  text-[0.7rem]"></h2>
                         </div>
-                        <div className="flex justify-center items-center mt-1.5">
-                        </div>
-
+                        <div className="flex justify-center items-center mt-1.5"></div>
                     </div>
                 </div>
-                    <button onClick={handleProfilChange}>add profil picture</button>
+                <button onClick={handleProfilChange}>add profil picture</button>
 
                 {/* Profile informations */}
                 <div className="mt-5">

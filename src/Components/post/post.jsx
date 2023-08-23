@@ -12,14 +12,13 @@ import { IoLocationOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Profile from "../../assets/imgs/profile.jpg";
-import io from "socket.io-client"
+import io from "socket.io-client";
 
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { addComment } from "@babel/types";
+import { async } from "q";
 
 //socket io
-
-
 
 const Post = ({
     description,
@@ -31,58 +30,67 @@ const Post = ({
     like,
     share,
     comments,
-    postId
+    postId,
 }) => {
+    const [socket, setSocket] = useState(null);
+    const [comment, setComment] = useState({
+        content: "",
+        userId: "",
+    });
+    useEffect(() => {
+        comment.userId = id;
+    });
+   /* useEffect(() => {
+        const newSocket = io("http://localhost:4000");
+
+        newSocket.on("connect", () => {
+            console.log("Connecté au serveur WebSocket");
+        });
+        newSocket.on("disconnect", () => {
+            console.log("Déconnecté du serveur WebSocket");
+        });
+
+        setSocket(newSocket);
+
+        return () => {
+            if (socket) {
+                socket.disconnect();
+            }
+        };
+    }, []);*/
+const [type,setType]=useState("")
+    const [id, setId] = useState("");
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setId(user.id);
+    }, []);
     
-
-const [socket,setSocket]=useState(null)
-    const [comment,setComment]=useState({
-        content:"",
-        userId:""
-    })
-useEffect(()=>{
-    comment.userId=id
-})
-useEffect(() => {
-    const newSocket = io("http://localhost:4000"); 
-
-    newSocket.on("connect", () => {
-      console.log("Connecté au serveur WebSocket");
-    });
-    newSocket.on("disconnect", () => {
-      console.log("Déconnecté du serveur WebSocket");
-    });
-
-    setSocket(newSocket);
-
-    return () => {
-      if (socket) {
-        socket.disconnect();
-      }
-    };
-  }, []);
-
-const [id, setId] = useState("")
-useEffect(()=>{
-const userString = localStorage.getItem('user');
-const user = JSON.parse(userString)
-setId(user.id)
-}, [])
-
-const AddComment=async (postId)=>{
-    try{
-        const res=await axios.put(`http://localhost:8080/posts/${postId}/comments`,comment)
-        const a=res.data
-        if(socket){
-            socket.emit("newComments",a)
-            console.log("commentaire envoyé dans le serveur:"+a);
+    const handelReactions= async()=>{
+        try{
+            const response= await axios.post(`http://127.0.0.1:8080/posts/${postId}/reactions`,{id,type})
+            console.log("reaction persistée");
+        }
+        catch(error){
+            console.log(error);
         }
     }
-    catch(err){
-        console.log(err);
-    }
-    comment.content="";
-}
+    const AddComment = async (postId) => {
+        try {
+            const res = await axios.put(
+                `http://localhost:8080/posts/${postId}/comments`,
+                comment
+            );
+            const a = res.data;
+          /*  if (socket) {
+                socket.emit("newComments", a);
+                console.log("commentaire envoyé dans le serveur:" + a);
+            }*/
+        } catch (err) {
+            console.log(err);
+        }
+        comment.content = "";
+    };
     return (
         <section>
             <div className="flex items-center gap-3">
@@ -116,7 +124,7 @@ const AddComment=async (postId)=>{
                         <div className="flex gap-5">
                             <button className=" py-1  text-white flex gap-1 items-center">
                                 <p className="pt-2 text-[0.8rem]">{like}</p>
-                                <a href="#Like" className="text-xl">
+                                <a href="#Like" className="text-xl" onClick={(()=>setType("LIKE"),handelReactions)}>
                                     <AiOutlineLike />
                                 </a>
                             </button>
@@ -184,7 +192,16 @@ const AddComment=async (postId)=>{
                             >
                                 {/* Text area - Input text for comments */}
 
-                                <TextareaForm value={comment.content} onChange={(e)=>setComment({...comment,content:e.target.value})} placeholder="Write a comment..." />
+                                <TextareaForm
+                                    value={comment.content}
+                                    onChange={(e) =>
+                                        setComment({
+                                            ...comment,
+                                            content: e.target.value,
+                                        })
+                                    }
+                                    placeholder="Write a comment..."
+                                />
 
                                 <div className="flex gap-4 items-center justify-end p-3">
                                     <a href="#photo">
@@ -205,7 +222,10 @@ const AddComment=async (postId)=>{
                                 </div>
                             </div>
 
-                            <button className=" px-3 rounded-md text-gray-50 text-[1.2rem]" onClick={()=>AddComment(postId)}>
+                            <button
+                                className=" px-3 rounded-md text-gray-50 text-[1.2rem]"
+                                onClick={() => AddComment(postId)}
+                            >
                                 <a href="#send">
                                     <BiSend />
                                 </a>

@@ -11,7 +11,7 @@ const Sidebar = () => {
     return (
         <section>
             <aside
-                className={`fixed inset-y-0 left-0 bg-black border-r-[1px] border-gray-800 max-h-screen w-16 lg:w-48 overflow-y-auto ${style.sidebar}`}
+                className={`fixed inset-y-0 left-0 bg-black border-r-[1px] border-gray-800 max-h-screen w-16 lg:w-48 overflow-y-auto`}
             >
                 <div className="flex flex-col justify-between h-full">
                     <div className="flex-grow">
@@ -21,6 +21,7 @@ const Sidebar = () => {
                             </h1>
 
                             {/* search */}
+                            {/* 
                             <div className="mt-6">
                                 <div className="relative">
                                     <div className="absolute top-0 flex items-center h-full ml-3 md:ml-5">
@@ -29,7 +30,8 @@ const Sidebar = () => {
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
+                            */}
                         </div>
                         <div className="p-2">
                             <ul className="">
@@ -69,18 +71,6 @@ const Sidebar = () => {
                                         <BiSolidShoppingBagAlt className="text-[20px]" />
                                         <span className="lg:block hidden text-[0.9rem]">
                                             Marketplace
-                                        </span>
-                                    </NavLink>
-                                </li>
-                                <li className="mb-4">
-                                    <NavLink
-                                        to="/News"
-                                        activeClassName={style.active}
-                                        className="flex gap-4 rounded-sm font-bold text-sm text-gray-100 py-3 justify-center lg:justify-start lg:px-4 px-0 bg-transparent hover:bg-gray-200 hover:text-gray-700 transition duration-150 ease-out hover:ease-in"
-                                    >
-                                        <BiSolidNews className="text-[20px]" />
-                                        <span className="lg:block hidden text-[0.9rem]">
-                                            News feed
                                         </span>
                                     </NavLink>
                                 </li>
