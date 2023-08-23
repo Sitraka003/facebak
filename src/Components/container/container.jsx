@@ -37,7 +37,7 @@ const Container = ({ iconPage, namePage }) => {
             <div className="ml-16 lg:ml-48 max-h-screen overflow-auto bg-[#050e15bd] h-screen flex justify-center">
                 <div className="w-full">
                     {/* ------- Header -------- */}
-                    <header className="bg-black py-3 px-6 flex justify-between items-center border-b-[1px] border-gray-800">
+                    <header className="bg-black py-3 px-6 flex justify-between items-center border-b-[1px] border-gray-800 fixed w-[-webkit-fill-available]">
                         {/* -----------------------------//-------------------------------- */}
                         <div>
                             {/* Icon Page ! where we are actually ? */}
@@ -94,7 +94,7 @@ const Container = ({ iconPage, namePage }) => {
                     </header>
 
                     {/* ------- Main [Page Principale de chaque Pages] -------- */}
-                    <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col justify-between h-full mt-[5rem]">
                         <main>
                             {/* 
                         --- if namePage == "Home" --> show HomeContent 
