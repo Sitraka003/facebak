@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from "../../assets/imgs/profile.jpg";
+
 import { BiEditAlt } from "react-icons/bi";
 import {useState, useEffect} from "react";
 import axios from "axios";
@@ -21,7 +22,7 @@ const ProfileContent = () => {
        // console.log(user.id);
         //getUserById(user.id)
     }, [])
-    /*const getUserById=async (id)=>{
+    const getUserById=async (id)=>{
         try{
             const response= await axios.get(`http://127.0.0.1:8080/users/${id}`)
             const value=response.data
@@ -31,8 +32,8 @@ const ProfileContent = () => {
         catch(error){
             console.log(error);
         }
-    }*/
-    const sendImage=async(imageData)=>{
+    }
+    /*const sendImage=async(imageData)=>{
         try{
             const formData=new FormData();
             formData.append("image",imageData)
@@ -50,6 +51,7 @@ const ProfileContent = () => {
             console.error("Erreur lors du téléchargement de l'image :", error);
         }
         }
+*/
     
 
    
@@ -63,9 +65,9 @@ const [newPic,setNewPic]=useState("");
         fileInput.addEventListener('change', (event) => {
             const selectedFile = event.target.files[0];
             if (selectedFile) {
-                sendImage(selectedFile)
+               // sendImage(selectedFile)
                 console.log("image envoyé avec succes",selectedFile.name);
-                setNewPic("http://localhost:4000/uploads"+selectedFile.name)
+                //setNewPic("http://localhost:4000/uploads"+selectedFile.name)
                 }
                 
         });
@@ -92,7 +94,7 @@ const [newPic,setNewPic]=useState("");
                         {/* Profile img */}
                         <div className="flex justify-center">
                             <img
-                                src="../../assets/imgs/profile.jpg"
+                                src="../../assets"
                                 alt="profile"
                                 className="rounded-full h-32 w-32"
                             />

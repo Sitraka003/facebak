@@ -27,38 +27,7 @@ const HomeContent = () => {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const newSocket = io("http://localhost:4000"); 
-    
-        // Écouter les événements de la connexion WebSocket
-        newSocket.on("connect", () => {
-          console.log("Connecté au serveur WebSocket");
-        });
-        newSocket.on("newPost", (newPost) => {
-            console.log("Nouveau post reçu :", newPost);
-            
-            // Mettre à jour l'état des posts en ajoutant le nouveau post à la liste actuelle
-            setUserPosts((prevPosts) => [...prevPosts, newPost]);
-          });
-        newSocket.on("newComments",(newComments)=>{
-            /*const comments={}
-            comments[newComments.postId]=newComments
-            
-            setUserComments(comments)
-            console.log("le commentaire est obtenu");*/
-            console.log(newComments);
-        })
-    
-        newSocket.on("disconnect", () => {
-          console.log("Déconnecté du serveur WebSocket");
-        });
-    
-        setSocket(newSocket);
-     
-        return () => {
-          if (socket) {
-            socket.disconnect();
-          }
-        };
+   
       }, []);
     useEffect(()=>{
         const userString = localStorage.getItem('user');
@@ -112,9 +81,10 @@ const HomeContent = () => {
             const response = await axios.put("http://localhost:8080/posts", value)
             const postData = response.data
             setPost(response.data)
-            if(socket){
+            const getPost=await axios.get("http://localhost:8080/posts/"+response.data.id)
+            /*if(socket){
                 socket.emit("newPost",postData)
-            }
+            }*/
         }catch(error){
             console.log(error);
         }
@@ -131,14 +101,14 @@ const HomeContent = () => {
         try{
             const res = await axios.get('http://localhost:8080/posts')
             setUserPosts(res.data)
-            const updatePostsComments={};
-            for(const post of res.data){
+            //const updatePostsComments={};
+          /*  for(const post of res.data){
                 const postId=post.id;
                 const comments=await getComments(postId)
                 updatePostsComments[postId]=comments
-            }
-            setUserComments(updatePostsComments)
-            console.log(updatePostsComments);
+            }*/
+            //setUserComments(updatePostsComments)
+            //console.log(updatePostsComments);
         }catch(err){
             console.log(err);
         }
@@ -146,7 +116,7 @@ const HomeContent = () => {
     const getComments=async (idPost)=>{
         try{
             const res=await axios.get(`http://localhost:8080/posts/${idPost}/comments`)
-            return res.data;
+            setUserComments(res.data)
             
         }
         catch(error){
@@ -335,22 +305,15 @@ const HomeContent = () => {
                                 </div>
                             }
                         */
-                            //like={userPost._count.reactions}
-                            like="10"
+                            like={userPost._count.reactions}
                             share="100"
-                            //comments={userPost._count.comments}
-                            comments="10"
+                            comments={userPost._count.comments}
                             postId={userPost.id}
                         
                             
                         />
                         {
-                            userComments[userPost.id]&&userComments[userPost.id].map((comment,indexComment)=>(
-                                <div key={comment.id}>
-                                    
-                                    <Comment img={comment.user.photo} commentContent={comment.content} userName={comment.user.username}/>
-                                </div>
-                            ))
+                         
                         }
                                     </div>
                                 ))}
