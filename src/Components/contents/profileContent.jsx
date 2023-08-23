@@ -2,12 +2,14 @@ import React from "react";
 import Profile from "../../assets/imgs/profile.jpg";
 import { BiEditAlt } from "react-icons/bi";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ProfileContent = () => {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
     const [pic, setPic] = useState("");
+    const [bio, setBio] = useState("");
 
     useEffect(() => {
         const userString = localStorage.getItem("user");
@@ -15,13 +17,62 @@ const ProfileContent = () => {
         setUserName(user.username);
         setEmail(user.email);
         setId(user.id);
+        setPic(user.photo);
+        // console.log(user.id);
+        //getUserById(user.id)
     }, []);
-    const handleProfilChange = () => {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*";
-        input.onchange = "";
+    /*const getUserById=async (id)=>{
+        try{
+            const response= await axios.get(`http://127.0.0.1:8080/users/${id}`)
+            const value=response.data
+            console.log(response);
+            setBio(response)
+        }
+        catch(error){
+            console.log(error);
+        }
+    }*/
+    const sendImage = async (imageData) => {
+        try {
+            const formData = new FormData();
+            formData.append("image", imageData);
+            const response = await axios.post(
+                "http://localhost:4000/upload",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            const uploadedImage = response.data.name;
+            console.log(uploadedImage);
+
+            console.log("Image téléchargée avec succès.");
+        } catch (error) {
+            console.error("Erreur lors du téléchargement de l'image :", error);
+        }
     };
+
+    const [newPic, setNewPic] = useState("");
+    const handleProfilChange = () => {
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = "image/*";
+        fileInput.style.display = "none";
+
+        fileInput.addEventListener("change", (event) => {
+            const selectedFile = event.target.files[0];
+            if (selectedFile) {
+                sendImage(selectedFile);
+                console.log("image envoyé avec succes", selectedFile.name);
+                setNewPic("http://localhost:4000/uploads" + selectedFile.name);
+            }
+        });
+
+        fileInput.click();
+    };
+
     return (
         <section className="container mx-auto mt-8">
             <div className="border-b-2 border-gray-300 pb-5">
@@ -39,7 +90,7 @@ const ProfileContent = () => {
                         {/* Profile img */}
                         <div className="flex justify-center">
                             <img
-                                src={Profile}
+                                src="../../assets/imgs/profile.jpg"
                                 alt="profile"
                                 className="rounded-full h-32 w-32"
                             />
@@ -64,6 +115,7 @@ const ProfileContent = () => {
                         <div className="flex justify-center items-center mt-1.5"></div>
                     </div>
                 </div>
+                <button onClick={handleProfilChange}>add profil picture</button>
 
                 {/* Profile informations */}
                 <div className="mt-5">

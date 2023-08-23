@@ -27,8 +27,7 @@ const HomeContent = () => {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        // Établir une connexion WebSocket
-        const newSocket = io("http://localhost:4000"); // Remplacez par l'URL de votre serveur socket
+        const newSocket = io("http://localhost:4000");
 
         // Écouter les événements de la connexion WebSocket
         newSocket.on("connect", () => {
@@ -40,14 +39,20 @@ const HomeContent = () => {
             // Mettre à jour l'état des posts en ajoutant le nouveau post à la liste actuelle
             setUserPosts((prevPosts) => [...prevPosts, newPost]);
         });
-
+        newSocket.on("newComments", (newComments) => {
+            /*const comments={}
+            comments[newComments.postId]=newComments
+   
+            setUserComments(comments)
+            console.log("le commentaire est obtenu");*/
+            console.log(newComments);
+        });
         newSocket.on("disconnect", () => {
             console.log("Déconnecté du serveur WebSocket");
         });
 
         setSocket(newSocket);
 
-        // Nettoyage : fermer la connexion WebSocket lors du démontage du composant
         return () => {
             if (socket) {
                 socket.disconnect();
@@ -168,17 +173,12 @@ const HomeContent = () => {
                             className="w-10 h-10 rounded-full"
                         />
                         {/* Textarea - Input Texts */}
-
-                        {/* <TextareaForm
+                        {/*
+                       
+                    */}
+                        <TextareaForm
                             placeholder="What's in your mind ?"
                             bg
-                            value={value.content}
-                            onChange={(e) =>
-                                setValue({ ...value, content: e.target.value })
-                            }
-                        /> */}
-
-                        <textarea
                             value={value.content}
                             onChange={(e) =>
                                 setValue({ ...value, content: e.target.value })

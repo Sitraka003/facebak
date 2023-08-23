@@ -12,9 +12,12 @@ import { IoLocationOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Profile from "../../assets/imgs/profile.jpg";
+import io from "socket.io-client";
 
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { addComment } from "@babel/types";
+
+//socket io
 
 const Post = ({
     description,
@@ -28,13 +31,7 @@ const Post = ({
     comments,
     postId,
 }) => {
-    const [id, setId] = useState("");
-    useEffect(() => {
-        const userString = localStorage.getItem("user");
-        const user = JSON.parse(userString);
-        setId(user.id);
-    }, []);
-
+    const [socket, setSocket] = useState(null);
     const [comment, setComment] = useState({
         content: "",
         userId: "",
@@ -42,6 +39,31 @@ const Post = ({
     useEffect(() => {
         comment.userId = id;
     });
+    useEffect(() => {
+        const newSocket = io("http://localhost:4000");
+
+        newSocket.on("connect", () => {
+            console.log("Connecté au serveur WebSocket");
+        });
+        newSocket.on("disconnect", () => {
+            console.log("Déconnecté du serveur WebSocket");
+        });
+
+        setSocket(newSocket);
+
+        return () => {
+            if (socket) {
+                socket.disconnect();
+            }
+        };
+    }, []);
+
+    const [id, setId] = useState("");
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setId(user.id);
+    }, []);
 
     const AddComment = async (postId) => {
         try {
@@ -49,6 +71,11 @@ const Post = ({
                 `http://localhost:8080/posts/${postId}/comments`,
                 comment
             );
+            const a = res.data;
+            if (socket) {
+                socket.emit("newComments", a);
+                console.log("commentaire envoyé dans le serveur:" + a);
+            }
         } catch (err) {
             console.log(err);
         }
