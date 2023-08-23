@@ -4,8 +4,8 @@ import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineLink } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsEmojiSmile } from "react-icons/bs";
-
 import Post from "../post/post.jsx";
+
 import Profile from "../../assets/imgs/profile.jpg";
 import Profile2 from "../../assets/imgs/profile2.jpg";
 import Profile3 from "../../assets/imgs/profile3.jpg";
@@ -16,106 +16,148 @@ import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { async } from "q";
+import io from "socket.io-client";
 
 const HomeContent = () => {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
-    const [username, setUserName] = useState("")
-    const [email, setEmail] = useState("")
-    const [id, setId] = useState("")
+    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [id, setId] = useState("");
+    const [socket, setSocket] = useState(null);
 
-    useEffect(()=>{
-        const userString = localStorage.getItem('user');
-        const user = JSON.parse(userString)
-        setUserName(user.username)
-        setEmail(user.email)
-        setId(user.id)
-    }, [])
+    useEffect(() => {
+        const newSocket = io("http://localhost:4000");
 
-    useEffect(()=>{
+        // Écouter les événements de la connexion WebSocket
+        newSocket.on("connect", () => {
+            console.log("Connecté au serveur WebSocket");
+        });
+        newSocket.on("newPost", (newPost) => {
+            console.log("Nouveau post reçu :", newPost);
+
+            // Mettre à jour l'état des posts en ajoutant le nouveau post à la liste actuelle
+            setUserPosts((prevPosts) => [...prevPosts, newPost]);
+        });
+        newSocket.on("newComments", (newComments) => {
+            /*const comments={}
+            comments[newComments.postId]=newComments
+   
+            setUserComments(comments)
+            console.log("le commentaire est obtenu");*/
+            console.log(newComments);
+        });
+        newSocket.on("disconnect", () => {
+            console.log("Déconnecté du serveur WebSocket");
+        });
+
+        setSocket(newSocket);
+
+        return () => {
+            if (socket) {
+                socket.disconnect();
+            }
+        };
+    }, []);
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setUserName(user.username);
+        setEmail(user.email);
+        setId(user.id);
+    }, []);
+
+    useEffect(() => {
         getUsers();
     }, []);
-    
-    const getUsers = async ()=>{
+
+    const getUsers = async () => {
         var userIdCont;
         try {
-            const response = await axios.get('http://localhost:8080/users');
+            const response = await axios.get("http://localhost:8080/users");
             setUsers(response.data);
-        
-            const userString = localStorage.getItem('user');
+
+            const userString = localStorage.getItem("user");
             const user = JSON.parse(userString);
             const userEmail = user.email;
-        
-            const matchingUser = response.data.find(user => user.email === userEmail);
-            setCurrentUser(matchingUser);
-        
-            if (matchingUser) {
-              var currentUserId = matchingUser.id;
-              userIdCont = currentUserId
-            }
-          } catch (error) {
-            console.error(`Erreur lors de la récupération des utilisateurs: ${error}`);
-          }
-          return userIdCont
-    }
-        getUsers().then(userIds => {
-           value.userId = userIds
-        });
-        
-    ;
-    const [posts, setPost] = useState(null)
-    const [value, setValue] = useState({
-        content: '',
-        photo: '',
-        userId: '',
-    })
-    const handlePost = async (e)=>{
-        e.preventDefault()
-       // console.log(value);
-        try{
-            const response = await axios.put("http://localhost:8080/posts", value)
-            const postData = response.data
-            setPost(response.data)
 
-            console.log(postData);
-        }catch(error){
+            const matchingUser = response.data.find(
+                (user) => user.email === userEmail
+            );
+            setCurrentUser(matchingUser);
+
+            if (matchingUser) {
+                var currentUserId = matchingUser.id;
+                userIdCont = currentUserId;
+            }
+        } catch (error) {
+            console.error(
+                `Erreur lors de la récupération des utilisateurs: ${error}`
+            );
+        }
+        return userIdCont;
+    };
+    getUsers().then((userIds) => {
+        value.userId = userIds;
+    });
+
+    const [posts, setPost] = useState(null);
+    const [value, setValue] = useState({
+        content: "",
+        photo: "",
+        userId: "",
+    });
+    const handlePost = async (e) => {
+        e.preventDefault();
+        // console.log(value);
+        try {
+            const response = await axios.put(
+                "http://localhost:8080/posts",
+                value
+            );
+            const postData = response.data;
+            setPost(response.data);
+            if (socket) {
+                socket.emit("newPost", postData);
+            }
+        } catch (error) {
             console.log(error);
         }
-    }
+    };
 
-    const [userPosts, setUserPosts] = useState([])
+    const [userPosts, setUserPosts] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         getPosts();
-    }, [])
-    const [userComments,setUserComments]=useState([])
+    }, []);
+    const [userComments, setUserComments] = useState([]);
 
-    const getPosts = async ()=>{
-        try{
-            const res = await axios.get('http://localhost:8080/posts')
-            setUserPosts(res.data)
-            const updatePostsComments={};
-            for(const post of res.data){
-                const postId=post.id;
-                const comments=await getComments(postId)
-                updatePostsComments[postId]=comments
+    const getPosts = async () => {
+        try {
+            const res = await axios.get("http://localhost:8080/posts");
+            setUserPosts(res.data);
+            const updatePostsComments = {};
+            for (const post of res.data) {
+                const postId = post.id;
+                const comments = await getComments(postId);
+                updatePostsComments[postId] = comments;
             }
-            setUserComments(updatePostsComments)
+            setUserComments(updatePostsComments);
             console.log(updatePostsComments);
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
-    }
-    const getComments=async (idPost)=>{
-        try{
-            const res=await axios.get(`http://localhost:8080/posts/${idPost}/comments`)
+    };
+    const getComments = async (idPost) => {
+        try {
+            const res = await axios.get(
+                `http://localhost:8080/posts/${idPost}/comments`
+            );
             return res.data;
-            
-        }
-        catch(error){
+        } catch (error) {
             console.log(error);
         }
-    }
+    };
     return (
         <div className="lg:grid grid-cols-5 gap-2 lg:gap-6 my-4 mx-2 md:mx-3 lg:mx-8 xl:mx-10 xl:gap-12">
             {/* --------------------  right Side --> Correspond aux Posts---------------------- */}
@@ -131,12 +173,17 @@ const HomeContent = () => {
                             className="w-10 h-10 rounded-full"
                         />
                         {/* Textarea - Input Texts */}
-                      {/*
-                       <TextareaForm placeholder="What's in your mind ?" bg value={value.content}
-                      onChange={(e)=>setValue({...value, content: e.target.value})}/>
-                    */} 
-                    <textarea value={value.content}
-                      onChange={(e)=>setValue({...value, content: e.target.value})}/>
+                        {/*
+                       
+                    */}
+                        <TextareaForm
+                            placeholder="What's in your mind ?"
+                            bg
+                            value={value.content}
+                            onChange={(e) =>
+                                setValue({ ...value, content: e.target.value })
+                            }
+                        />
                     </div>
 
                     <div className="flex justify-between">
@@ -166,7 +213,11 @@ const HomeContent = () => {
                                 </a>
                             </button>
                             <button className="bg-transparent border-[3px] border-gray-800 px-5 py-1 rounded-md text-white">
-                                <a href="#post" className="text-[0.8rem]" onClick={handlePost}>
+                                <a
+                                    href="#post"
+                                    className="text-[0.8rem]"
+                                    onClick={handlePost}
+                                >
                                     Post
                                 </a>
                             </button>
@@ -175,7 +226,7 @@ const HomeContent = () => {
                 </div>
                 {/*------------- Latest post by friends/others (ici y'aura la liste des publications XD) -------------*/}
                 <div className="mt-5">
-                  {/*  <div className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5">
+                    {/*  <div className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5">
                         <Post
                             description={
                                 <div>
@@ -261,6 +312,22 @@ const HomeContent = () => {
                         />
                         </div>*/}
 
+                    {userPosts.map((userPost, index) => (
+                        <div
+                            key={index}
+                            className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5"
+                        >
+                            <Post
+                                description={
+                                    <div>
+                                        <p>{userPost.content}</p>
+                                    </div>
+                                }
+                                profileImage={userPost.user.photo}
+                                username={userPost.user.username}
+                                postImage={userPost.photo}
+                                postHour={userPost.createdAt}
+                                /*
                    
                                 {userPosts.map((userPost, index)=>(
                                    
@@ -299,6 +366,27 @@ const HomeContent = () => {
                                 </div>
                             }
                         */
+                                //like={userPost._count.reactions}
+                                like="10"
+                                share="100"
+                                //comments={userPost._count.comments}
+                                comments="10"
+                                postId={userPost.id}
+                            />
+                            {userComments[userPost.id] &&
+                                userComments[userPost.id].map(
+                                    (comment, indexComment) => (
+                                        <div key={comment.id}>
+                                            <Comment
+                                                img={comment.user.photo}
+                                                commentContent={comment.content}
+                                                userName={comment.user.username}
+                                            />
+                                        </div>
+                                    )
+                                )}
+                        </div>
+                    ))}
                            /* like={userPost._count.reactions}*/
                             share="100"
                             /*comments={userPost._count.comments}*/

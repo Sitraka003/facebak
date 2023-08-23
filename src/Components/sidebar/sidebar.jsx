@@ -72,18 +72,6 @@ const Sidebar = () => {
                                         </span>
                                     </NavLink>
                                 </li>
-                                <li className="mb-4">
-                                    <NavLink
-                                        to="/News"
-                                        activeClassName={style.active}
-                                        className="flex gap-4 rounded-sm font-bold text-sm text-gray-100 py-3 justify-center lg:justify-start lg:px-4 px-0 bg-transparent hover:bg-gray-200 hover:text-gray-700 transition duration-150 ease-out hover:ease-in"
-                                    >
-                                        <BiSolidNews className="text-[20px]" />
-                                        <span className="lg:block hidden text-[0.9rem]">
-                                            News feed
-                                        </span>
-                                    </NavLink>
-                                </li>
                             </ul>
                         </div>
                     </div>
