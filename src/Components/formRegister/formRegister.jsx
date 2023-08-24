@@ -23,7 +23,7 @@ const FormRegister = () => {
             localStorage.setItem("token", response.data.token)
             localStorage.setItem('user', JSON.stringify(user))
 
-            navigate('/username='+user.username)
+            navigate('/')
         }catch(error){
             if(error.response){
                 console.log(error.response.data);

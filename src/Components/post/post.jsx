@@ -16,6 +16,7 @@ import io from "socket.io-client";
 
 import TextareaForm from "../textareaForm/textareaForm.jsx";
 import { addComment } from "@babel/types";
+import { async } from "q";
 
 //socket io
 
@@ -39,7 +40,7 @@ const Post = ({
     useEffect(() => {
         comment.userId = id;
     });
-    useEffect(() => {
+   /* useEffect(() => {
         const newSocket = io("http://localhost:4000");
 
         newSocket.on("connect", () => {
@@ -56,15 +57,24 @@ const Post = ({
                 socket.disconnect();
             }
         };
-    }, []);
-
+    }, []);*/
+const [type,setType]=useState("")
     const [id, setId] = useState("");
     useEffect(() => {
         const userString = localStorage.getItem("user");
         const user = JSON.parse(userString);
         setId(user.id);
     }, []);
-
+    
+    const handelReactions= async()=>{
+        try{
+            const response= await axios.post(`http://127.0.0.1:8080/posts/${postId}/reactions`,{id,type})
+            console.log("reaction persistée");
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
     const AddComment = async (postId) => {
         try {
             const res = await axios.put(
@@ -72,10 +82,10 @@ const Post = ({
                 comment
             );
             const a = res.data;
-            if (socket) {
+          /*  if (socket) {
                 socket.emit("newComments", a);
                 console.log("commentaire envoyé dans le serveur:" + a);
-            }
+            }*/
         } catch (err) {
             console.log(err);
         }
@@ -114,7 +124,7 @@ const Post = ({
                         <div className="flex gap-5">
                             <button className=" py-1  text-white flex gap-1 items-center">
                                 <p className="pt-2 text-[0.8rem]">{like}</p>
-                                <a href="#Like" className="text-xl">
+                                <a href="#Like" className="text-xl" onClick={(()=>setType("LIKE"),handelReactions)}>
                                     <AiOutlineLike />
                                 </a>
                             </button>
