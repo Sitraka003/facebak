@@ -27,7 +27,7 @@ const HomeContent = () => {
     const [id, setId] = useState("");
     const [socket, setSocket] = useState(null);
 
-    useEffect(() => {
+   /* useEffect(() => {
         const newSocket = io("http://localhost:4000");
 
         // Écouter les événements de la connexion WebSocket
@@ -45,7 +45,7 @@ const HomeContent = () => {
             comments[newComments.postId]=newComments
    
             setUserComments(comments)
-            console.log("le commentaire est obtenu");*/
+            console.log("le commentaire est obtenu");
             console.log(newComments);
         });
         newSocket.on("disconnect", () => {
@@ -59,7 +59,7 @@ const HomeContent = () => {
                 socket.disconnect();
             }
         };
-    }, []);
+    }, []);*/
     useEffect(() => {
         const userString = localStorage.getItem("user");
         const user = JSON.parse(userString);
@@ -118,9 +118,9 @@ const HomeContent = () => {
             );
             const postData = response.data;
             setPost(response.data);
-            if (socket) {
+          /*  if (socket) {
                 socket.emit("newPost", postData);
-            }
+            }*/
         } catch (error) {
             console.log(error);
         }
