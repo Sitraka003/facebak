@@ -1,0 +1,30 @@
+.background{
+    height: 100vh;
+    background-color: rgb(39, 39, 39);
+}
+
+.form-container{
+    background-color: rgb(79, 79, 79);
+    height: 60vh;
+    width: 20%;
+} 
+
+.form-control{
+    width: 40vh;
+}
+
+.part{
+    width: 17rem;
+}
+
+@media screen and (max-witdh: 1000px) {
+    .form-container{
+        width: 45%;
+    }    
+}
+
+@media screen and (max-witdh: 700px) {
+    .form-container{
+        width: 65%;
+    }    
+}
