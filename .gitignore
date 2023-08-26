@@ -23,5 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 # Finaritra
+<<<<<<< HEAD
+/code-memo.js
+=======
 /code-memo.js
 /src/App.js
+>>>>>>> ba6588651f997228da0154c87b23187d7dac8f3a

@@ -1,4 +1,144 @@
 .profile-container {
-    width: 88vw;
+    width: 85vw;
+    height: 88vh;
     background-color:azure ;
+}
+
+@media screen and (max-width : 1142px) {
+    .profile-container  {
+        width: 75vw;
+    }
+}
+
+#both {
+	display: flex;
+	flex-direction: row; 
+	align-items: center;
+	justify-content: center;
+  }
+
+
+.tab-content {
+	padding: 3rem;
+  }
+  
+  .tab-pane.active {
+	display: block;
+  }
+  
+  /* Form styling */
+  .form-group {
+	margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+	width: 85%;
+	padding: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 0.5rem;
+	transition: border-color 0.3s ease;
+  }
+  
+  
+  textarea.form-control {
+	resize: horizontal;
+  }
+
+  .column{
+	display: flex;
+	flex-direction: row;
+	
+  }
+  .form-control-column{
+	width: 70%;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid #ccc;
+  }
+  
+  /* Button styling */
+  .btn {
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .button {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+  }
+  
+
+  label {
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	display: block;
+  }
+
+
+  @media (max-width: 768px) {
+	.form-group {
+	  margin-bottom: 1rem;
+	}
+  
+	.btn {
+	  width: 100%;
+	  margin-top: 1rem;
+	}
+  }
+
+  @media (max-width: 768px) {
+	.upload {
+	  margin-top: 1rem;
+	}
+  }
+
+  .upload{
+  width: 100px;
+  position: relative;
+  margin: auto;
+}
+
+.upload img{
+  border-radius: 50%;
+  border: 6px solid #eaeaea;
+}
+
+.upload .round{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: white;
+  width: 32px;
+  height: 32px;
+  line-height: 33px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.upload .round input[type = "file"]{
+  position: absolute;
+  transform: scale(2);
+  opacity: 0;
+}
+
+input[type=file]::-webkit-file-upload-button{
+    cursor: pointer;
+}
+
+form .pic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings{
+  padding: 100px;
+  margin-left: 60px;
 }

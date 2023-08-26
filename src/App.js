@@ -1,22 +1,17 @@
+import React from 'react';
 import './App.css';
-import { Header } from './main/header.jsx';
-import { NavBar } from './main/nav-bar';
-import { Post } from './modules/post/post';
-import "./main/main.css";
-// import { Profil } from './modules/profil/profil.jsx';
-// import { Login } from './modules/login-singin/login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Login } from './modules/login-singin/login.jsx';
+import { Home } from './modules/Home/home.jsx';
 
 function App() {
   return (
-    <>
-      <Header />
-        <main>
-          <NavBar />
-          <Post />
-          {/* <Profil/> */}
-          {/* <Login/>  */}
-        </main>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home/*" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

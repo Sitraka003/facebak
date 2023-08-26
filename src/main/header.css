@@ -6,12 +6,13 @@
 :root {
     --c1olor: black;
     --c2olor: rgb(7, 237, 206);
+    --c20olor: rgb(0, 115, 255);
 }
 
 /* ROW */
 header,
 .profil_name_bar_contain,
-.profil_name_space{
+.profil_name_space {
     display: flex;
     flex-direction: row;
 }
@@ -33,8 +34,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding-inline: 4vw;
-    border: var(--c1olor) solid 1px;
+    border-bottom: var(--c20olor) solid 1px;
     height: 12vh;
+    /* background-color: var(--c2olor); */
 }
 
 .logo_f {
@@ -50,16 +52,24 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 4vw;
+    /* border: red 1px solid; */
 }
 
 .profil_name_space {
     justify-content: space-between;
     gap: 0.3vw;
     align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .profil_name_space {
+        display: none;
+    }
 }
 
 .three_bars {
-    height:30px;
+    height: 30px;
     justify-content: space-between;
     align-items: end;
 }
@@ -82,10 +92,7 @@ header {
     width: 25px;
 }
 
-/* 
-.main_container {
-    height: 100vh;
-} */
+
 
 .profil_image_space {
     width: 50px;
@@ -93,6 +100,7 @@ header {
     background-color: aqua;
     border-radius: 50%;
     overflow: hidden;
+    border: var(--c2olor) 1px solid;
 }
 
 .profil_image_space img {
@@ -100,24 +108,40 @@ header {
     height: 100%;
     background-color: red;
 }
-/* 
-.nav_modules_container {
-    border: var(--c2olor) 1px solid;
-    justify-content: space-between;
+
+
+.search-space {
+    border: 1px var(--c20olor) solid;
+    border-radius: 30px;
+    width: 20%;
+    height: 45%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 2%;
+    padding-right: 1%;
+
 }
 
-.nav_modules_container nav {
-    border: var(--c2olor) 1px solid;
-    height: 88vh;
-    width: 15vw;
-    justify-content: space-between;
+@media screen and (max-width: 600px) {
+    .search-space{
+        width: 35%;
+    }
 }
- */
 
+@media screen  and (max-width: 350px){
+    .search-space{
+        display: none;
+    }
+}
+#search-bar {
+    width: 85%;
+    height: 100%;
+    border: 1px var(--c1olor) solid;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    
+    /* padding-left: 20%; */
+}
 
-/* 
-.modules_container {
-    width: 85vw;
-    border: var(--c1olor) 1px solid;
-    text-align: start;
-} */
