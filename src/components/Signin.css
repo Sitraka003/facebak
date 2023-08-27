@@ -1,0 +1,41 @@
+.background{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(188, 188, 188);
+}
+
+.title{
+    color: white;
+    margin-bottom: 20px;
+}
+
+.form-container{
+    background-color: rgb(255, 255, 255);
+    max-width: 400px;
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+} 
+
+.form-control{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.custom-input-label {
+    margin-left: 5px;
+}
+
+.d-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.text-right {
+    text-align: right;
+    margin-top: 10px;
+}

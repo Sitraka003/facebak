@@ -1,0 +1,63 @@
+.background {
+    height: 100vh;
+    background-color: #1877f2; /* Facebook blue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title{
+    color: white;
+    margin-bottom: 20px;
+}  
+  
+  /* Form container styles */
+  .form-container {
+    background-color: #ffffff; /* White background */
+    width: 60%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+  }
+  
+  /* Input styles */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e4e6eb; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Checkbox styles */
+  .custom-control-input {
+    margin-right: 5px;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    background-color: #1877f2; /* Facebook blue */
+    border: none;
+  }
+  
+  /* Link styles */
+  .text-right a {
+    color: #1877f2; /* Facebook blue */
+    text-decoration: none;
+    margin-left: 5px;
+  }
+  
+  /* Media queries for responsiveness */
+  @media screen and (max-width: 1000px) {
+    .form-container {
+      width: 45%;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .form-container {
+      width: 65%;
+    }
+  }
