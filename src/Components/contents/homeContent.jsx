@@ -25,6 +25,41 @@ const HomeContent = () => {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
+    const [socket, setSocket] = useState(null);
+
+   /* useEffect(() => {
+        const newSocket = io("http://localhost:4000");
+
+        // Écouter les événements de la connexion WebSocket
+        newSocket.on("connect", () => {
+            console.log("Connecté au serveur WebSocket");
+        });
+        newSocket.on("newPost", (newPost) => {
+            console.log("Nouveau post reçu :", newPost);
+
+            // Mettre à jour l'état des posts en ajoutant le nouveau post à la liste actuelle
+            setUserPosts((prevPosts) => [...prevPosts, newPost]);
+        });
+        newSocket.on("newComments", (newComments) => {
+            /*const comments={}
+            comments[newComments.postId]=newComments
+   
+            setUserComments(comments)
+            console.log("le commentaire est obtenu");
+            console.log(newComments);
+        });
+        newSocket.on("disconnect", () => {
+            console.log("Déconnecté du serveur WebSocket");
+        });
+
+        setSocket(newSocket);
+
+        return () => {
+            if (socket) {
+                socket.disconnect();
+            }
+        };
+    }, []);*/
     
     useEffect(() => {
         const userString = localStorage.getItem("user");
@@ -84,6 +119,9 @@ const HomeContent = () => {
             );
             const postData = response.data;
             setPost(response.data);
+          /*  if (socket) {
+                socket.emit("newPost", postData);
+            }*/
         } catch (error) {
             console.log(error);
         }

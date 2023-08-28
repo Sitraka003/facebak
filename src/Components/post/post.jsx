@@ -65,10 +65,18 @@ const [type,setType]=useState("")
         const user = JSON.parse(userString);
         setId(user.id);
     }, []);
-    
-    const handelReactions= async()=>{
+    const [reaction,setReaction]=useState({
+        userId:"",
+        type:""
+
+
+    })
+  
+    const handelReactions= async(type)=>{
         try{
-            const response= await axios.post(`http://127.0.0.1:8080/posts/${postId}/reactions`,{id,type})
+            console.log(type);
+            const response= await axios.post(`http://127.0.0.1:8080/posts/${postId}/reactions`,{userId:id,type:type})
+            
             console.log("reaction persistée");
         }
         catch(error){
@@ -124,7 +132,9 @@ const [type,setType]=useState("")
                         <div className="flex gap-5">
                             <button className=" py-1  text-white flex gap-1 items-center">
                                 <p className="pt-2 text-[0.8rem]">{like}</p>
-                                <a href="#Like" className="text-xl" onClick={(()=>setType("LIKE"),handelReactions)}>
+                                <a href="#Like" className="text-xl" onClick={()=>{
+                                    handelReactions("LIKE")
+                                }}>
                                     <AiOutlineLike />
                                 </a>
                             </button>
