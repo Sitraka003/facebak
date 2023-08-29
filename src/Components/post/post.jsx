@@ -127,6 +127,7 @@ const [type,setType]=useState("")
                             className="w-full h-full object-contain rounded-md bg-[#02101b]"
                         />
                     </div>
+                    
 
                     <div className="flex justify-between items-center mt-3">
                         <div className="flex gap-5">
