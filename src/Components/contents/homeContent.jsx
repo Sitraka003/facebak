@@ -27,7 +27,7 @@ const HomeContent = () => {
     const [id, setId] = useState("");
     const [socket, setSocket] = useState(null);
 
-   /* useEffect(() => {
+    /* useEffect(() => {
         const newSocket = io("http://localhost:4000");
 
         // Écouter les événements de la connexion WebSocket
@@ -118,7 +118,7 @@ const HomeContent = () => {
             );
             const postData = response.data;
             setPost(response.data);
-          /*  if (socket) {
+            /*  if (socket) {
                 socket.emit("newPost", postData);
             }*/
         } catch (error) {
@@ -351,32 +351,33 @@ const HomeContent = () => {
                                 </div>
                             }
                         */
-                            like={userPost._count.reactions}
-                            share="100"
-                            comments={userPost._count.comments}
-                            postId={userPost.id}
-                        
-                            
-                        />
-                        {
-                              userComments[userPost.id]&&userComments[userPost.id].map((comment,indexComment)=>(
-                                <div key={comment.id}>
-
-                                    <Comment img={comment.user.photo} commentContent={comment.content} userName={comment.user.username}/>
-                                </div>
-                            ))
-                        }
-                                    </div>
-                                ))}
-                         
-                    
+                                like={userPost._count.reactions}
+                                share="100"
+                                comments={userPost._count.comments}
+                                postId={userPost.id}
+                            />
+                            {userComments[userPost.id] &&
+                                userComments[userPost.id].map(
+                                    (comment, indexComment) => (
+                                        <div key={comment.id}>
+                                            <Comment
+                                                img={comment.user.photo}
+                                                commentContent={comment.content}
+                                                userName={comment.user.username}
+                                            />
+                                        </div>
+                                    )
+                                )}
+                        </div>
+                    ))}
                 </div>
             </div>
 
             {/* ------------------------------------------- left Side ------------------------------------------ */}
             <div className="col-span-1 lg:col-span-2 mt-3 md:mt-0">
-                <div className="h-fit shadow-[0px_0px_5px_#6a7da0] fixed">
+                <div className="h-fit shadow-[0px_0px_5px_#6a7da0]">
                     <div className="mb-5 p-5">
+                        <h3 className="font-bold py-5">Contacts</h3>
                         <ContactList />
                     </div>
                 </div>
