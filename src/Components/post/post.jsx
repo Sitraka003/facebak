@@ -37,27 +37,8 @@ const Post = ({
         content: "",
         userId: "",
     });
-    useEffect(() => {
-        comment.userId = id;
-    });
-   /* useEffect(() => {
-        const newSocket = io("http://localhost:4000");
-
-        newSocket.on("connect", () => {
-            console.log("Connecté au serveur WebSocket");
-        });
-        newSocket.on("disconnect", () => {
-            console.log("Déconnecté du serveur WebSocket");
-        });
-
-        setSocket(newSocket);
-
-        return () => {
-            if (socket) {
-                socket.disconnect();
-            }
-        };
-    }, []);*/
+  
+   
 const [type,setType]=useState("")
     const [id, setId] = useState("");
     useEffect(() => {
@@ -65,46 +46,29 @@ const [type,setType]=useState("")
         const user = JSON.parse(userString);
         setId(user.id);
     }, []);
+   
     const [reaction,setReaction]=useState({
         userId:"",
         type:""
 
 
     })
-  const [liked,setLiked]=useState(false)
-  useEffect(() => {
-    // Vérifiez si l'utilisateur a aimé ce post en consultant le localStorage
-    const isPostLiked = localStorage.getItem(`post_${postId}_liked`);
-    if (isPostLiked === "true") {
-      setLiked(true);
-    }
-  }, [postId]);
-
-  const handleLike = () => {
-    // Inversez l'état "aimé"
-    setLiked(!liked);
-
-    // Mettez à jour le localStorage pour enregistrer l'état "aimé"
-    if (!liked) {
-      localStorage.setItem(`post_${postId}_liked`, "true");
-    } else {
-      localStorage.removeItem(`post_${postId}_liked`);
-    }
-  };
-
+  
     const handelReactions= async(type)=>{
-     if(!liked){
         try{
             console.log(type);
             const response= await axios.post(`http://127.0.0.1:8080/posts/${postId}/reactions`,{userId:id,type:type})
-            setLiked(true)
+            
             console.log("reaction persistée");
         }
         catch(error){
             console.log(error);
         }
     }
-     }
+    useEffect(() => {
+        comment.userId = id;
+        console.log("zany ny id e"+id);
+    },[]);
     const AddComment = async (postId) => {
         try {
             const res = await axios.put(
@@ -144,18 +108,17 @@ const [type,setType]=useState("")
                 <div className="mt-3">
                     <div className="h-[30rem]">
                         <img
-                            src="https://picsum.photos/300/200"
+                            src={postImage}
                             alt="post_img"
                             className="w-full h-full object-contain rounded-md bg-[#02101b]"
                         />
                     </div>
-                    
 
                     <div className="flex justify-between items-center mt-3">
                         <div className="flex gap-5">
                             <button className=" py-1  text-white flex gap-1 items-center">
                                 <p className="pt-2 text-[0.8rem]">{like}</p>
-                                <a href="#Like" className={`text-xl ${liked? "bg-blue-500":''}`} onClick={()=>{
+                                <a href="#Like" className="text-xl" onClick={()=>{
                                     handelReactions("LIKE")
                                 }}>
                                     <AiOutlineLike />
