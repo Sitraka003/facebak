@@ -71,18 +71,40 @@ const [type,setType]=useState("")
 
 
     })
-  
+  const [liked,setLiked]=useState(false)
+  useEffect(() => {
+    // Vérifiez si l'utilisateur a aimé ce post en consultant le localStorage
+    const isPostLiked = localStorage.getItem(`post_${postId}_liked`);
+    if (isPostLiked === "true") {
+      setLiked(true);
+    }
+  }, [postId]);
+
+  const handleLike = () => {
+    // Inversez l'état "aimé"
+    setLiked(!liked);
+
+    // Mettez à jour le localStorage pour enregistrer l'état "aimé"
+    if (!liked) {
+      localStorage.setItem(`post_${postId}_liked`, "true");
+    } else {
+      localStorage.removeItem(`post_${postId}_liked`);
+    }
+  };
+
     const handelReactions= async(type)=>{
+     if(!liked){
         try{
             console.log(type);
             const response= await axios.post(`http://127.0.0.1:8080/posts/${postId}/reactions`,{userId:id,type:type})
-            
+            setLiked(true)
             console.log("reaction persistée");
         }
         catch(error){
             console.log(error);
         }
     }
+     }
     const AddComment = async (postId) => {
         try {
             const res = await axios.put(
@@ -132,7 +154,7 @@ const [type,setType]=useState("")
                         <div className="flex gap-5">
                             <button className=" py-1  text-white flex gap-1 items-center">
                                 <p className="pt-2 text-[0.8rem]">{like}</p>
-                                <a href="#Like" className="text-xl" onClick={()=>{
+                                <a href="#Like" className={`text-xl ${liked? "bg-blue-500":''}`} onClick={()=>{
                                     handelReactions("LIKE")
                                 }}>
                                     <AiOutlineLike />
