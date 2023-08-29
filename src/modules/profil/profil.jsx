@@ -1,6 +1,6 @@
 import "./profil.css";
-import user from "../../assets/teste-files/profil.jpeg";
 
+import user from "../../assets/teste-files/profil.jpeg";
 
 export function Profil () {
     return (

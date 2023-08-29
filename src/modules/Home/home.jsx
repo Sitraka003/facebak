@@ -1,3 +1,4 @@
+import './home.css';
 import React from 'react';
 import { Header } from '../../main/header.jsx';
 import { Routes, Route, Outlet } from 'react-router-dom';
@@ -18,6 +19,7 @@ export function Home() {
                         <Route index element={<PostList />} />
                         <Route path="newPost" element={<NewPost/>} />
                         <Route path="profil" element={<Profil/>} />
+                        <Route path="*"  element={<div className="center"> <h1>PAGE NOT FOUND ! </h1> </div>} />
                     </Route>
                 </Routes>
             </Main>

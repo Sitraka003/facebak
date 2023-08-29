@@ -24,7 +24,7 @@
 }
 
 .post-list-space {
-    box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.511) inset;
+    /* box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.511) inset; */
     /* border: var(--c1olor) 1px solid; */
     height: 100%;
     width: 700px;
@@ -89,7 +89,7 @@
     /* background-color: rebeccapurple; */
     padding-top: 2%;
     padding-bottom: 2%;
-    bottom: -50%;
+    bottom: -33%;
     justify-content: space-around;
-    border-bottom: 1px var(--c20olor) solid;
+    border: 1px var(--c20olor) solid;
 }

@@ -1,0 +1,22 @@
+.center {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ff0000;
+    background-color: #61dafb84;
+}
+
+.center{
+    width: 85vw;
+    height: 88vh;
+    margin-inline: auto;
+}
+
+@media screen and (max-width : 1142px) {
+    .center {
+        width: 75vw;
+    }
+}

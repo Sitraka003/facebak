@@ -19,7 +19,7 @@ function Footer() {
 }
 
 const iconData = [
-    { icon: HomeIcon, path: "/home", text: "Home", count: "+15" },
+    { icon: HomeIcon, path: "/home/", text: "Home", count: "+15" },
     { icon: CommentIcon, path: "/home/chat", text: "Chat", count: "10" },
     { icon: NotificationsIcon, path: "/home/notif", text: "Notifications", count: "+10" },
     { icon: AddBoxIcon, path: "/home/newPost", text: "New Post" },
