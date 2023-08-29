@@ -60,6 +60,7 @@ const HomeContent = () => {
             }
         };
     }, []);*/
+
     useEffect(() => {
         const userString = localStorage.getItem("user");
         const user = JSON.parse(userString);
@@ -328,6 +329,22 @@ const HomeContent = () => {
                                 postImage={userPost.photo}
                                 postHour={userPost.createdAt}
                                 /*
+                   
+                                {userPosts.map((userPost, index)=>(
+                                   
+                                    <div key={index} className="bg-gray-900 border-[1px] border-solid  border-gray-700  rounded-md p-2 mb-5">
+                                            <Post
+                            description={
+                                <div>
+                                    <p>{userPost.content}</p>
+                                </div>
+                            }
+                            profileImage={userPost.user.photo}
+                            username={userPost.user.username}
+                            postImage={userPost.content}
+                            postHour={userPost.createdAt}
+                            /*
+                        hashtag={
                                 hashtag={
                                 <div className="flex gap-2">
                                     <a
@@ -370,6 +387,26 @@ const HomeContent = () => {
                                 )}
                         </div>
                     ))}
+                        
+                            like={userPost._count.reactions}
+                            share="100"
+                            comments={userPost._count.comments}
+                            postId={userPost.id}
+                        */
+                            
+                        />
+                        {
+                              userComments[userPost.id]&&userComments[userPost.id].map((comment,indexComment)=>(
+                                <div key={comment.id}>
+
+                                    <Comment img={comment.user.photo} commentContent={comment.content} userName={comment.user.username}/>
+                                </div>
+                            ))
+                        }
+                                    </div>
+                                ))}
+                         
+                    
                 </div>
             </div>
 
