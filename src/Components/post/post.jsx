@@ -122,11 +122,12 @@ const [type,setType]=useState("")
                 <div className="mt-3">
                     <div className="h-[30rem]">
                         <img
-                            src={postImage}
+                            src="https://picsum.photos/300/200"
                             alt="post_img"
                             className="w-full h-full object-contain rounded-md bg-[#02101b]"
                         />
                     </div>
+                    
 
                     <div className="flex justify-between items-center mt-3">
                         <div className="flex gap-5">

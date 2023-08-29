@@ -19,11 +19,46 @@ import Profile1 from "../../assets/imgs/profile.jpg";
 
 import Footer from "../footer/footer.jsx";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Container = ({ iconPage, namePage }) => {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
+    const [users, setUsers] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+
+    const getUsers = async () => {
+        var userIdCont;
+        try {
+            const response = await axios.get("http://localhost:8080/users");
+            setUsers(response.data);
+
+            const userString = localStorage.getItem("user");
+            const user = JSON.parse(userString);
+            const userEmail = user.email;
+
+            const matchingUser = response.data.find(
+                (user) => user.email === userEmail
+            );
+            setCurrentUser(matchingUser);
+
+            if (matchingUser) {
+                var currentUserId = matchingUser.id;
+                userIdCont = currentUserId;
+                console.log(userIdCont);
+            }
+        } catch (error) {
+            console.error(
+                `Erreur lors de la récupération des utilisateurs: ${error}`
+            );
+        }
+        return userIdCont;
+    };
 
     useEffect(() => {
         const userString = localStorage.getItem("user");
