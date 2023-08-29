@@ -27,7 +27,7 @@ const HomeContent = () => {
     const [id, setId] = useState("");
     const [socket, setSocket] = useState(null);
 
- 
+
     useEffect(() => {
         const userString = localStorage.getItem("user");
         const user = JSON.parse(userString);
@@ -86,7 +86,6 @@ const HomeContent = () => {
             );
             const postData = response.data;
             setPost(response.data);
-        
         } catch (error) {
             console.log(error);
         }
@@ -341,8 +340,9 @@ const HomeContent = () => {
 
             {/* ------------------------------------------- left Side ------------------------------------------ */}
             <div className="col-span-1 lg:col-span-2 mt-3 md:mt-0">
-                <div className="h-fit shadow-[0px_0px_5px_#6a7da0] fixed">
+                <div className="h-fit shadow-[0px_0px_5px_#6a7da0]">
                     <div className="mb-5 p-5">
+                        <h3 className="font-bold py-5">Contacts</h3>
                         <ContactList />
                     </div>
                 </div>

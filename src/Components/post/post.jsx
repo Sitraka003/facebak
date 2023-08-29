@@ -45,6 +45,8 @@ const [type,setType]=useState("")
         const userString = localStorage.getItem("user");
         const user = JSON.parse(userString);
         setId(user.id);
+        comment.userId=user.id
+        
     }, []);
    
     const [reaction,setReaction]=useState({
@@ -67,7 +69,7 @@ const [type,setType]=useState("")
     }
     useEffect(() => {
         comment.userId = id;
-        console.log("zany ny id e"+id);
+        console.log("zany ny id e lele"+id);
     },[]);
     const AddComment = async (postId) => {
         try {
@@ -76,10 +78,7 @@ const [type,setType]=useState("")
                 comment
             );
             const a = res.data;
-          /*  if (socket) {
-                socket.emit("newComments", a);
-                console.log("commentaire envoyé dans le serveur:" + a);
-            }*/
+         
         } catch (err) {
             console.log(err);
         }
@@ -108,7 +107,7 @@ const [type,setType]=useState("")
                 <div className="mt-3">
                     <div className="h-[30rem]">
                         <img
-                            src={postImage}
+                            src="https://picsum.photos/seed/picsum/500/400"
                             alt="post_img"
                             className="w-full h-full object-contain rounded-md bg-[#02101b]"
                         />
