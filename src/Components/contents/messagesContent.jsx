@@ -37,13 +37,14 @@ const MessagesContent = () => {
 
     return (
         <div>
-            <h1>Liste des utilisateurs</h1>
             {/* 5. Afficher les utilisateurs */}
             {users.map((user, index) => (
-                <div key={index}>
-                    <h2>{user.id}</h2>
+                <div key={index} className="flex flex-col justify-between border-r-[1px] border-gray-800 w-11 lg:w-48 overflow-y-auto">
+                   {/* <h2>{user.id}</h2>*/}
+                   <div className="flex flex-row gap-2 justify-arround h-full">
                     <img src={user.photo} alt={user.name} />
-                    <h3>{user.email}</h3>
+                    <h3>{user.username}</h3>
+                   </div>
                     {/* Continue ici avec tous les autres informations de l'utilisateur */}
                 </div>
             ))}
