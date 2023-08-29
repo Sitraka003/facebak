@@ -1,7 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const UserProfil = ({ pseudo, username, userImage }) => {
+    const [usernames, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [id, setId] = useState("");
+
+    useEffect(() => {
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+        setUserName(user.username);
+        setEmail(user.email);
+        setId(user.id);
+    }, []);
+   
     return (
         <div>
             <div className="flex items-center gap-3">
@@ -18,7 +32,7 @@ const UserProfil = ({ pseudo, username, userImage }) => {
                         {pseudo}
                     </p>
                     <p className="text-gray-400 text-sm  text-[0.7rem]">
-                        {username}
+                        {usernames}
                     </p>
                 </div>
             </div>

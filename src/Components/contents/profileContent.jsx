@@ -72,6 +72,39 @@ const ProfileContent = () => {
         fileInput.click();
     };
 
+    const [changes, setChanges]= useState(false);
+    const changeProfil = () =>{
+        console.log("this work");
+        setChanges(true)
+    }
+
+    const currentUserString = localStorage.getItem("user");
+    const theUser = JSON.parse(currentUserString);
+    const theEmail = theUser.email;
+
+    const [userstate, SetUserstate] = useState({
+        bio:"",
+        email: theEmail,
+        username: "",
+        password: "",
+        confirmPassword: ""
+    })
+    const changeProfilStatus = async (e)=>{
+        e.preventDefault();
+        
+        try{
+            const response = await axios.put('http://localhost:8080/users', userstate)
+            localStorage.setItem("token", response.data.token)
+            localStorage.setItem('user', JSON.stringify(userstate))
+
+        }catch(error){
+            if(error.response){
+                console.log(error.response.data);
+                console.log(userstate);
+            }
+        }
+    }
+
     return (
         <section className="container mx-auto mt-8">
             <div className="border-b-2 border-gray-300 pb-5">
@@ -115,6 +148,30 @@ const ProfileContent = () => {
                     </div>
                 </div>
                 <button onClick={handleProfilChange}>add profil picture</button>
+                <button onClick={changeProfil}>change profil detail</button>
+                <div>
+                {changes && (
+                    <div>
+                        <form  >
+                            <input type="text" placeholder="your new username"
+                            value={userstate.username}
+                            onChange={e=>SetUserstate({...userstate, username: e.target.value})}/>
+                            <input type="text" placeholder="your new bio"
+                            value={userstate.bio}
+                            onChange={e=>SetUserstate({...userstate, bio: e.target.value})}
+                            />
+                            <input type="password" placeholder="your new password"
+                            value={userstate.password}
+                            onChange={e=>SetUserstate({...userstate, password: e.target.value})}
+                            />
+                            <input type="password" placeholder="confirm your new password"
+                            value={userstate.confirmPassword}
+                            onChange={e=>SetUserstate({...userstate, confirmPassword: e.target.value})}/>
+                            <input type="button" value="Submit" onClick={changeProfilStatus}/>
+                        </form>
+                    </div>
+                )}
+                </div>
 
                 {/* Profile informations */}
                 <div className="mt-5">
