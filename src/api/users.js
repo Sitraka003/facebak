@@ -36,23 +36,10 @@ export const deleteUser = async (userId) => {
   });
 
   if (response.ok) {
-    // Utilisateur supprimé avec succès
+    console.log("User deleted succefully");
     return true;
   } else {
-    // Gérer les erreurs, par exemple :
     const errorData = await response.json();
     throw new Error(errorData.message);
   }
 };
-
-/*
-    Les informations nécéssaire pour faire un user
-{
-    "email": "manoalahatra@gmail.com",
-    "username": "manoalahatra",
-    "password": "manoalahatra",
-    "confirmPassword": "manoalahatra",
-    "bio": "deploy B2B networks",
-    "photo": "https://robohash.org/autlaudantiumeveniet.png?size=50x50&set=set1"
-}
-*/
