@@ -4,6 +4,7 @@ import '../css/style.css';
 import '../fonts/material-icon/css/material-design-iconic-font.min.css';
 
 export default function Signup() {
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -69,7 +70,7 @@ export default function Signup() {
                         </div>
                         <div className="signup-image">
                             {/* <figure><img src="images/signup-image.jpg" alt="sing up image"></figure> */}
-                            <a href="#" className="signup-image-link">I am already member</a>
+                            <a href="/login" className="signup-image-link">I am already member</a>
                         </div>
                     </div>
                 </div>
