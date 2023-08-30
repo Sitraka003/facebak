@@ -97,8 +97,8 @@ export default function Landing() {
                             </a>
                         </button>
                         <button type="button" className="sign-in-btn">
-                            <a href="/sign-in">
-                                SignIn
+                            <a href="/login">
+                                Login
                             </a>
                         </button>
                     </div>

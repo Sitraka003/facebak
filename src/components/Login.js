@@ -2,13 +2,14 @@ import React from "react";
 import { useState } from "react";
 import '../css/style.css';
 import '../fonts/material-icon/css/material-design-iconic-font.min.css';
+import { userLogin } from "../api/users";
 
 export default function Login() {
 
     const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: ''
+        username: 'slindemann0',
+        password: 'nF8$h\\sw',
+        email: 'ahamshar0@seattletimes.com'
     });
 
     const handleChange = (e) => {
@@ -22,13 +23,14 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        await createUser(formData);
+        localStorage.removeItem("token")
+        localStorage.setItem("token" , userLogin(formData));
+        alert(localStorage.getItem("token"))
 
         setFormData({
-            username: '',
-            email: '',
-            password: ''
+            username: 'slindemann0',
+            password: 'nF8$h\\sw',
+            email: 'ahamshar0@seattletimes.com'
         });
     }
 
@@ -39,7 +41,7 @@ return (
             <div className="container">
                 <div className="signup-content">
                     <div className="signup-form">
-                        <h2 className="form-title">Sign up</h2>
+                        <h2 className="form-title">Log In</h2>
                         <form method="POST" className="register-form" id="register-form" onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="name"><i className="zmdi zmdi-account material-icons-name"></i></label>
@@ -54,7 +56,7 @@ return (
                                 <input type="password" name="password" id="pass" placeholder="Password" value={formData.password} onChange={handleChange}/>
                             </div>
                             <div className="form-group form-button">
-                                <input type="submit" name="signup" id="signup" className="form-submit" value="Register"/>
+                                <input type="submit" name="signup" id="signup" className="form-submit" value="Log in"/>
                             </div>
                         </form>
                     </div>
